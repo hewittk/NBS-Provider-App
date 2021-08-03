@@ -1,0 +1,703 @@
+{
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:bdc25337-b060-4a09-8238-7fe36772c0e3",
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      },
+      "resource": {
+        "managingOrganization": {
+          "reference": "#1"
+        },
+        "identifier": [
+          {
+            "value": "987654321",
+            "type": {
+              "coding": [
+                {
+                  "code": "MR",
+                  "display": "Medical Record Number",
+                  "system": "http://hl7.org/fhir/v2/0203"
+                }
+              ]
+            },
+            "system": "urn:oid:2.16.840.1.113883.3.1205.1.1.5.100"
+          }
+        ],
+        "gender": "male",
+        "resourceType": "Patient",
+        "birthDate": "2018-01-01",
+        "name": [
+          {
+            "use": "official",
+            "given": [
+              "Rick"
+            ],
+            "family": "Sanchez"
+          }
+        ],
+        "contained": [
+          {
+            "name": "Intermountain Healthcare",
+            "id": "1",
+            "resourceType": "Organization"
+          }
+        ],
+        "active": true
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:80322c30-2815-4091-a1a9-d8f420601554",
+      "request": {
+        "method": "POST",
+        "url": "Specimen"
+      },
+      "resource": {
+        "identifier": [
+          {
+            "value": "UT123B456",
+            "system": "urn:oid:333.444"
+          }
+        ],
+        "receivedTime": "2018-01-01",
+        "resourceType": "Specimen",
+        "collection": {
+          "collectedDateTime": "2018-01-01",
+          "method": {
+            "coding": [
+              {
+                "code": "79566-6",
+                "display": "Collection method - DBS",
+                "system": "https://loinc.org"
+              },
+              {
+                "code": "LA25402-1",
+                "display": "Heel stick",
+                "system": "https://loinc.org"
+              }
+            ]
+          }
+        },
+        "subject": {
+          "reference": "urn:uuid:bdc25337-b060-4a09-8238-7fe36772c0e3"
+        },
+        "accessionIdentifier": {
+          "value": "S2860999201900",
+          "system": "urn:oid:333.444"
+        },
+        "status": "available",
+        "processing": [
+          {
+            "timeDateTime": "2018-01-02T15:30:10+01:00"
+          }
+        ],
+        "request": [
+          {
+            "reference": "urn:uuid:a66beb87-7717-4b50-b966-2259c16f24fe"
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "code": "440500007",
+              "display": "Dried blood spot specimen (specimen)",
+              "system": "http://www.snomed.org/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a66beb87-7717-4b50-b966-2259c16f24fe",
+      "request": {
+        "method": "POST",
+        "url": "ServiceRequest"
+      },
+      "resource": {
+        "status": "completed",
+        "specimen": {
+          "reference": "urn:uuid:80322c30-2815-4091-a1a9-d8f420601554"
+        },
+        "resourceType": "ServiceRequest",
+        "intent": "reflex-order",
+        "performer": {
+          "reference": "urn:uuid:fe0755ef-7a90-4d71-954b-a481a7ea5eba"
+        },
+        "subject": {
+          "reference": "urn:uuid:bdc25337-b060-4a09-8238-7fe36772c0e3"
+        },
+        "code": [
+          {
+            "coding": {
+              "code": [
+                "LA12425-7"
+              ],
+              "display": "Subsequent screen - required by law",
+              "system": "https://loinc.org"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3f747ae1-c2ef-461f-8869-bbe6559c881a",
+      "request": {
+        "method": "POST",
+        "url": "DiagnosticReport"
+      },
+      "resource": {
+        "basedOn": [
+          {
+            "reference": "urn:uuid:a66beb87-7717-4b50-b966-2259c16f24fe"
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:bdc25337-b060-4a09-8238-7fe36772c0e3"
+        },
+        "issued": "2018-01-03T15:30:10+01:00",
+        "conclusion": "Cystic Fibrosis carrier",
+        "status": "final",
+        "performer": [
+          {
+            "reference": "urn:uuid:fe0755ef-7a90-4d71-954b-a481a7ea5eba"
+          }
+        ],
+        "specimen": [
+          {
+            "reference": "urn:uuid:80322c30-2815-4091-a1a9-d8f420601554"
+          }
+        ],
+        "category": {
+          "coding": [
+            {
+              "code": "LAB",
+              "display": "Laboratory",
+              "system": "http://hl7.org/fhir/v2/0074"
+            }
+          ]
+        },
+        "result": [
+          {
+            "reference": "urn:uuid:8c251fce-ff55-47b8-a4a9-7d74e11cf4c2",
+            "display": "Cystic Fibrosis CFTR DNA"
+          },
+          {
+            "reference": "urn:uuid:21e1b9d8-29ef-4cbb-ba81-9aa98b014259",
+            "display": "Cystic Fibrosis CFTR DNA"
+          }
+        ],
+        "resourceType": "DiagnosticReport",
+        "code": {
+          "coding": [
+            {
+              "code": "54089-8",
+              "display": "Newborn screening panel American Health Information Community (AHIC)",
+              "system": "https://loinc.org"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8c251fce-ff55-47b8-a4a9-7d74e11cf4c2",
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "focus": {
+          "reference": "#7"
+        },
+        "basedOn": [
+          {
+            "reference": "urn:uuid:a66beb87-7717-4b50-b966-2259c16f24fe"
+          }
+        ],
+        "contained": [
+          {
+            "status": "completed",
+            "id": "7",
+            "resourceType": "Media",
+            "content": {
+              "data": "IyNmaWxlZm9ybWF0PVZDRnY0LjIKIyNyZWZlcmVuY2U9ZmlsZTovLy9nYXRrL215X2Rh\n            \t\t\t\t\t\t\t\t\tdGEvdWNzYy5oZzE5LmZhc3RhCiMjU25wRWZmVmVyc2lvbj0iNC4zdCAoYnVpbGQgMjAx\n            \t\t\t\t\t\t\t\t\tNy0xMS0yNCAxMDoxOCksIGJ5IFBhYmxvIENpbmdvbGFuaSIKIyNTbnBFZmZDbWQ9IlNu\n            \t\t\t\t\t\t\t\t\tcEVmZiAgR1JDaDM3Ljc1IGZpbHRlcmVkX3NucHMudmNmICIKIyNJTkZPPTxJRD1BTk4s\n            \t\t\t\t\t\t\t\t\tTnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IkZ1bmN0aW9uYWwgYW5ub3Rh\n            \t\t\t\t\t\t\t\t\tdGlvbnM6ICdBbGxlbGUgfCBBbm5vdGF0aW9uIHwgQW5ub3RhdGlvbl9JbXBhY3QgfCBH\n            \t\t\t\t\t\t\t\t\tZW5lX05hbWUgfCBHZW5lX0lEIHwgRmVhdHVyZV9UeXBlIHwgRmVhdHVyZV9JRCB8IFRy\n            \t\t\t\t\t\t\t\t\tYW5zY3JpcHRfQmlvVHlwZSB8IFJhbmsgfCBIR1ZTLmMgfCBIR1ZTLnAgfCBjRE5BLnBv\n            \t\t\t\t\t\t\t\t\tcyAvIGNETkEubGVuZ3RoIHwgQ0RTLnBvcyAvIENEUy5sZW5ndGggfCBBQS5wb3MgLyBB\n            \t\t\t\t\t\t\t\t\tQS5sZW5ndGggfCBEaXN0YW5jZSB8IEVSUk9SUyAvIFdBUk5JTkdTIC8gSU5GTycgIj4K\n            \t\t\t\t\t\t\t\t\tIyNJTkZPPTxJRD1MT0YsTnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IlBy\n            \t\t\t\t\t\t\t\t\tZWRpY3RlZCBsb3NzIG9mIGZ1bmN0aW9uIGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFudC4g\n            \t\t\t\t\t\t\t\t\tRm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2NyaXB0\n            \t\t\t\t\t\t\t\t\tc19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgojI0lO\n            \t\t\t\t\t\t\t\t\tRk89PElEPU5NRCxOdW1iZXI9LixUeXBlPVN0cmluZyxEZXNjcmlwdGlvbj0iUHJlZGlj\n            \t\t\t\t\t\t\t\t\tdGVkIG5vbnNlbnNlIG1lZGlhdGVkIGRlY2F5IGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFu\n            \t\t\t\t\t\t\t\t\tdC4gRm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2Ny\n            \t\t\t\t\t\t\t\t\taXB0c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgoj\n            \t\t\t\t\t\t\t\t\tQ0hST00JUE9TCUlECVJFRglBTFQJUVVBTAlGSUxURVIJSU5GTwlGT1JNQVQJU2FtcGxl\n            \t\t\t\t\t\t\t\t\tMQpjaHI3CTExNzE5OTY0NAkuCUFUQ1QJQQkyNTkuNzMJUEFTUwlBQz0xO0FGPTAuNTAw\n            \t\t\t\t\t\t\t\t\tO0FOPTI7QmFzZVFSYW5rU3VtPTEuMzczO0NsaXBwaW5nUmFua1N1bT0wLjAwMDtEUD0y\n            \t\t\t\t\t\t\t\t\tNjtFeGNlc3NIZXQ9My4wMTAzO0ZTPTAuMDAwO01MRUFDPTE7TUxFQUY9MC41MDA7TVE9\n            \t\t\t\t\t\t\t\t\tNjAuMDA7TVFSYW5rU3VtPTAuMDAwO1FEPTEyLjM3O1JlYWRQb3NSYW5rU3VtPS0wLjkx\n            \t\t\t\t\t\t\t\t\tMztTT1I9MC41Njk7QU5OPUF8ZGlzcnVwdGl2ZV9pbmZyYW1lX2RlbGV0aW9ufE1PREVS\n            \t\t\t\t\t\t\t\t\tQVRFfENGVFJ8RU5TRzAwMDAwMDAxNjI2fHRyYW5zY3JpcHR8RU5TVDAwMDAwMDAzMDg0\n            \t\t\t\t\t\t\t\t\tfHByb3RlaW5fY29kaW5nfDExLzI3fGMuMTUyMV8xNTIzZGVsQ1RUfHAuUGhlNTA4ZGVs\n            \t\t\t\t\t\t\t\t\tfDE2NTMvNjEyOHwxNTIxLzQ0NDN8NTA3LzE0ODB8fElORk9fUkVBTElHTl8zX1BSSU1F\n            \t\t\t\t\t\t\t\t\tO0NMTlNJRz1QYXRob2dlbmljCUdUOkFEOkRQOkdROlBMCTAvMToxMyw4OjIxOjk5OjI5\n            \t\t\t\t\t\t\t\t\tNywwLDUyMgo=",
+              "contentType": "text/plain"
+            },
+            "subject": {
+              "reference": "urn:uuid:bdc25337-b060-4a09-8238-7fe36772c0e3"
+            },
+            "basedOn": [
+              {
+                "reference": "urn:uuid:a66beb87-7717-4b50-b966-2259c16f24fe"
+              }
+            ]
+          }
+        ],
+        "issued": "2018-01-01T15:30:10+01:00",
+        "component": [
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "41393",
+                  "display": "Cystic fibrosis",
+                  "system": "https://www.ncbi.nlm.nih.gov/medgen/"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "51967-8",
+                  "display": "Genetic disease assessed [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "1884",
+                  "display": "CFTR",
+                  "system": "https://www.genenames.org/"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "All exons and splicing regions of CFTR",
+            "code": {
+              "coding": [
+                {
+                  "code": "81293-3",
+                  "display": "Description of ranges of DNA sequences examined",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6576-8",
+                  "display": "Positive",
+                  "system": "https://loinc.org"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "51968-6",
+                  "display": "Discrete variation analysis overall interpretation",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA14029-5",
+                  "display": "GRCh37",
+                  "system": "https://loinc.org"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "19.01.181030",
+            "code": {
+              "coding": [
+                {
+                  "code": "81303-0",
+                  "display": "HGVS version [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "152",
+            "code": {
+              "coding": [
+                {
+                  "code": "82115-7",
+                  "display": "dbSNP version [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "7105",
+            "code": {
+              "coding": [
+                {
+                  "code": "83008-3",
+                  "display": "ClinVar version [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA26801-3",
+                  "display": "Simple variant",
+                  "system": "https://loinc.org"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "83005-9",
+                  "display": "Variant category",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "7105^NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)^ClinVar",
+            "code": {
+              "coding": [
+                {
+                  "code": "81252-9",
+                  "display": "Discrete genetic variant",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "NM_000492.3",
+            "code": {
+              "coding": [
+                {
+                  "code": "51958-7",
+                  "display": "Transcript reference sequence [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "NM_000492.3:c.1521_1523delCTT",
+            "code": {
+              "coding": [
+                {
+                  "code": "48004-6",
+                  "display": "DNA change (c.HGVS)",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "NP_000483.3:p.Phe508del",
+            "code": {
+              "coding": [
+                {
+                  "code": "48005-3",
+                  "display": "Amino acid change (pHGVS)",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6692-3",
+                  "display": "Deletion",
+                  "system": "https://loinc.org"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "48019-4",
+                  "display": "DNA change type",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6692-3",
+                  "display": "Deletion",
+                  "system": "https://loinc.org"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "48006-1",
+                  "display": "Amino acid change [Type]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "NG_016465.4 or NC_000007.13",
+            "code": {
+              "coding": [
+                {
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "NG_016465.4:g.98809_98811delCTT or NC_000007.13:g.117199646_117199648delCTT",
+            "code": {
+              "coding": [
+                {
+                  "code": "81290-9",
+                  "display": "Genomic DNA change (gHGVS)",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "CTT",
+            "code": {
+              "coding": [
+                {
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "Chr7: 117199646 - 117199648",
+            "code": {
+              "coding": [
+                {
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "rs113993960",
+            "code": {
+              "coding": [
+                {
+                  "code": "81255-2",
+                  "display": "dbSNP [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "36M3D69M",
+            "code": {
+              "coding": [
+                {
+                  "code": "81257-8",
+                  "display": "CIGAR [ID]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "chr7",
+            "code": {
+              "coding": [
+                {
+                  "code": "48001-2",
+                  "display": "Cytogenetic (chromosome) location",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6683-2",
+                  "display": "Germline",
+                  "system": "https://loinc.org"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "48002-0",
+                  "display": "Genomic source class [Type]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6668-3",
+                  "display": "Pathogenic",
+                  "system": "https://loinc.org"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "53037-8",
+                  "display": "Genetic variation clinical significance [Imp]",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6705-3",
+                  "display": "Homozygous",
+                  "system": "https://loinc.org"
+                }
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "53034-5",
+                  "display": "Allelic state",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "valueString": "30X",
+            "code": {
+              "coding": [
+                {
+                  "code": "82121-5",
+                  "display": "Allelic read depth",
+                  "system": "https://loinc.org"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "final",
+        "performer": [
+          {
+            "reference": "urn:uuid:fe0755ef-7a90-4d71-954b-a481a7ea5eba"
+          }
+        ],
+        "specimen": {
+          "reference": "urn:uuid:80322c30-2815-4091-a1a9-d8f420601554"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "laboratory",
+                "display": "Laboratory",
+                "system": "http://hl7.org/fhir/observation-category"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:bdc25337-b060-4a09-8238-7fe36772c0e3"
+        },
+        "resourceType": "Observation",
+        "code": {
+          "coding": [
+            {
+              "code": "81247-9",
+              "display": "Master HL7 genetic variant reporting panel",
+              "system": "https://loinc.org"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fe0755ef-7a90-4d71-954b-a481a7ea5eba",
+      "request": {
+        "method": "POST",
+        "url": "Organization"
+      },
+      "resource": {
+        "telecom": [
+          {
+            "use": "work",
+            "value": "8015848256",
+            "system": "phone"
+          },
+          {
+            "use": "work",
+            "value": "8015360966",
+            "system": "fax"
+          }
+        ],
+        "address": [
+          {
+            "postalCode": "84129-8600",
+            "line": [
+              "4431 South 2700 West"
+            ],
+            "city": "Taylorsville",
+            "country": "USA",
+            "use": "work"
+          }
+        ],
+        "name": "Unified State Laboratories: Public Health Newborn Screening Program",
+        "resourceType": "Organization"
+      }
+    }
+  ],
+  "type": "transaction",
+  "resourceType": "Bundle"
+}

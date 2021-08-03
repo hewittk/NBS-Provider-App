@@ -1,0 +1,966 @@
+<Bundle xmlns="http://hl7.org/fhir">
+  <type value="transaction"/>
+  <!-- Patient - PKU and CF carrier -->
+  <entry>
+    <fullUrl value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+    <resource>
+      <Patient>
+        <contained>
+      		<Organization>
+      			<id value="1"/>
+      			<name value="Intermountain Healthcare"/>
+      		</Organization>
+      	</contained>
+        <identifier>
+          <type>
+      			<coding>
+      				<system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+      				<code value="MR"/>
+      				<display value="Medical Record Number"/>
+      			</coding>
+      		</type>
+      		<system value="urn:oid:2.16.840.1.113883.3.1205.1.1.5.100"/>
+      		<value value="123789456"/>
+      	</identifier>
+      	<active value="true"/>
+      	<name>
+      		<use value="official"/>
+      		<family value="Pibbles"/>
+      		<given value="Shrimply"/>
+      	</name>
+      	<gender value="male"/>
+      	<birthDate value="2018-01-01"/>
+      	<managingOrganization>
+      		<reference value="#1"/>
+      	</managingOrganization>
+      </Patient>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Patient"/>
+    </request>
+  </entry>
+  <!-- Specimen -->
+  <entry>
+    <fullUrl value="urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"/>
+    <resource>
+      <Specimen>
+        <accessionIdentifier>
+      		<system value="urn:oid:333.444"/>
+      		<value value="S2860999202010"/>
+      	</accessionIdentifier>
+      	<status value="available"/>
+      	<type>
+      		<coding>
+      			<system value="http://snomed.info/sct"/>
+      			<code value="440500007"/>
+      			<display value="Dried blood spot specimen (specimen)"/>
+      		</coding>
+      	</type>
+      	<subject>
+      		<reference value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+      	</subject>
+      	<receivedTime value="2018-01-01"/>
+      	<request>
+      		<reference value="urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"/>
+      	</request>
+      	<collection>
+      		<collectedDateTime value="2018-01-01"/>
+      	</collection>
+      </Specimen>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Specimen"/>
+    </request>
+  </entry>
+  <!-- ServiceRequest -->
+  <entry>
+    <fullUrl value="urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"/>
+    <resource>
+      <ServiceRequest>
+        <status value="completed"/>
+        <intent value="reflex-order"/>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="LA12425-7"/>
+            <display value="Subsequent screen - required by law"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+        </subject>
+        <specimen>
+          <reference value="urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"/>
+        </specimen>
+      </ServiceRequest>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="ServiceRequest"/>
+    </request>
+  </entry>
+  <!-- DiagnosticReport -->
+  <entry>
+    <fullUrl value="urn:uuid:bfe33dd2-a521-492c-9718-d0340695a986"/>
+    <resource>
+      <DiagnosticReport>
+        <contained>
+      		<Organization>
+      			<id value="2"/>
+      			<name value="Unified State Laboratories: Public Health Newborn Screening Program"/>
+      			<telecom>
+      				<system value="phone"/>
+      				<value value="8015848256"/>
+      				<use value="work"/>
+      			</telecom>
+      			<telecom>
+      				<system value="fax"/>
+      				<value value="8015360966"/>
+      				<use value="work"/>
+      			</telecom>
+      			<address>
+      				<use value="work"/>
+      				<line value="4431 South 2700 West"/>
+      				<city value="Taylorsville"/>
+      				<postalCode value="84129-8600"/>
+      				<country value="USA"/>
+      			</address>
+      		</Organization>
+      	</contained>
+        <basedOn>
+          <reference value="urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"/>
+        </basedOn>
+        <status value="final"/>
+      	<category>
+      		<coding>
+      			<system value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
+      			<code value="LAB"/>
+      			<display value="Laboratory"/>
+      		</coding>
+      	</category>
+      	<code>
+      		<coding>
+      			<system value="http://loinc.org"/>
+      			<code value="54089-8"/>
+      			<display value="Newborn screening panel American Health Information Community (AHIC)"/>
+      		</coding>
+      	</code>
+      	<subject>
+      		<reference value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+      	</subject>
+      	<issued value="2018-01-01T15:30:10+01:00"/>
+      	<performer>
+      			<reference value="#2"/>
+      	</performer>
+      	<specimen>
+      		<reference value="urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"/>
+      	</specimen>
+        <!-- CF carrier -->
+      	<result>
+      		<reference value="urn:uuid:65affd39-9def-446b-bb26-0e8ebbbc01da"/>
+      		<display value="Cystic Fibrosis CFTR DNA"/>
+      	</result>
+        <!-- CF carrier c.2988+1G>A interpretation -->
+        <result>
+          <reference value="Observation/81642d4c-ad85-441b-b39e-c27788e59e03"/>
+          <display value="Cystic Fibrosis CFTR DNA"/>
+        </result>
+        <!-- PKU -->
+        <result>
+          <reference value="urn:uuid:02b41d94-3544-49c7-907f-e344c041637e"/>
+          <display value="Phenylketonuria PAH DNA"/>
+        </result>
+        <!-- PKU c.1222C>T -->
+        <result>
+          <reference value="urn:uuid:4ee459dc-e4af-48bb-a1fd-32b4eb8d8ce0"/>
+          <display value="Phenylketonuria PAH DNA"/>
+        </result>
+        <!-- PKU c.473G>A -->
+        <result>
+          <reference value="urn:uuid:233ed153-1661-465d-afce-1f7888da10ae"/>
+          <display value="Phenylketonuria PAH DNA"/>
+        </result>
+      	<conclusion value="Conisistent with clinical diagnosis of Phenylketonuria and Cystic Fibrosis carrier"/>
+      </DiagnosticReport>
+    </resource>
+  </entry>
+  <!-- Observation CF Carrier -->
+  <entry>
+    <fullUrl value="urn:uuid:65affd39-9def-446b-bb26-0e8ebbbc01da"/>
+    <resource>
+      <Observation>
+        <contained>
+      		<Organization>
+      			<id value="2"/>
+      			<name value="Unified State Laboratories: Public Health Newborn Screening Program"/>
+      			<telecom>
+      				<system value="phone"/>
+      				<value value="8015848256"/>
+      				<use value="work"/>
+      			</telecom>
+      			<telecom>
+      				<system value="fax"/>
+      				<value value="8015360966"/>
+      				<use value="work"/>
+      			</telecom>
+      			<address>
+      				<use value="work"/>
+      				<line value="4431 South 2700 West"/>
+      				<city value="Taylorsville"/>
+      				<postalCode value="84129-8600"/>
+      				<country value="USA"/>
+      			</address>
+      		</Organization>
+      	</contained>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId">
+      		<valueCodeableConcept>
+      			<coding>
+      				<system value="http://www.ncbi.nlm.nih.gov/clinvar"/>
+      				<code value="7224"/>
+      				<display value="NM_000492.3(CFTR):c.2988+1G>A"/>
+      			</coding>
+      		</valueCodeableConcept>
+      	</extension>
+      	<extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId">
+      		<valueCodeableConcept>
+      			<coding>
+      				<system value="https://www.ncbi.nlm.nih.gov/snp"/>
+      				<code value="rs75096551"/>
+      				<display value="chr7:117246808 (GRCh37.p13)"/>
+      			</coding>
+      		</valueCodeableConcept>
+      	</extension>
+      	<extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariantName">
+      		<valueCodeableConcept>
+      			<coding>
+      				<system value="http://loinc.org"/>
+      				<code value="48004-6"/>
+      				<display value="NM_000492.3(CFTR):c.2988+1G>A"/>
+      			</coding>
+      		</valueCodeableConcept>
+      	</extension>
+      	<extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsGene">
+      		<valueCodeableConcept>
+      			<coding>
+      				<system value="http://www.genenames.org"/>
+      				<code value="1884"/>
+      				<display value="CFTR"/>
+      			</coding>
+      		</valueCodeableConcept>
+      	</extension>
+      	<extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsAllelicState">
+      		<valueCodeableConcept>
+      			<coding>
+      				<system value="http://loinc.org"/>
+      				<code value="LA6706-1"/>
+      				<display value="Heterozygous"/>
+      			</coding>
+      		</valueCodeableConcept>
+      	</extension>
+      	<extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsInterpretation">
+      		<valueReference>
+      			<reference value="urn:uuid:81642d4c-ad85-441b-b39e-c27788e59e03"/>
+      		</valueReference>
+      	</extension>
+        <basedOn>
+          <reference value="urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"/>
+        </basedOn>
+        <status value="final"/>
+      	<category>
+      		<coding>
+      			<system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      			<code value="laboratory"/>
+      			<display value="Laboratory"/>
+      		</coding>
+      	</category>
+      	<code>
+      		<coding>
+      			<system value="http://loinc.org"/>
+      			<code value="54078-1"/>
+      			<display value="Cystic fibrosis newborn screening panel"/>
+      		</coding>
+      	</code>
+      	<subject>
+        	<reference value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+        </subject>
+      	<issued value="2018-01-01T15:30:10+01:00"/>
+      	<performer>
+      			<reference value="#2"/>
+      	</performer>
+      	<interpretation>
+      		<coding>
+      			<system value="http://hl7.org/fhir/v2/0078"/>
+      			<code value="A"/>
+      			<display value="Abnormal"/>
+      		</coding>
+      	</interpretation>
+        <note>
+      	<text value="Cystic Fibrosis DNA result: Positive for one pathogenic mutation: 3120+1G>A
+      									Interpretation: This individual is heterozygous for the 3120+1G>A (c.2988+1G>A)
+      									mutation in the CFTR gene. This result does not rule out the possibility
+      									that this individual is affected with cystic fibrosis.  Clinical follow
+      									up is recommended. Method: DNA isolated from dried blood spot specimen
+      									undergoes CFTR mutation detection assay using Luminex xTAG Cystic Fibrosis
+      									v2 (CF60) v.02. ACTION: SWEAT CHLORIDE TESTING AND GENETIC COUNSELING RECOMMENDED."/>
+        </note>
+      	<specimen>
+      		<reference value="urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"/>
+      	</specimen>
+        <component>
+          <code>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="54083-1"/>
+              <display value="CFTR gene mutations found [Identifier] in DBS by Molecular genetics method Nominal"/>
+            </coding>
+          </code>
+          <valueAttachment>
+            <contentType value="text/plain"/>
+            <data value="IyNmaWxlZm9ybWF0PVZDRnY0LjIKIyNyZWZlcmVuY2U9ZmlsZTovLy9nYXRrL215X2Rh
+                          dGEvdWNzYy5oZzE5LmZhc3RhCiMjU25wRWZmVmVyc2lvbj0iNC4zdCAoYnVpbGQgMjAx
+                          Ny0xMS0yNCAxMDoxOCksIGJ5IFBhYmxvIENpbmdvbGFuaSIKIyNTbnBFZmZDbWQ9IlNu
+                          cEVmZiAgR1JDaDM3Ljc1IGZpbHRlcmVkX3NucHMudmNmICIKIyNJTkZPPTxJRD1BTk4s
+                          TnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IkZ1bmN0aW9uYWwgYW5ub3Rh
+                          dGlvbnM6ICdBbGxlbGUgfCBBbm5vdGF0aW9uIHwgQW5ub3RhdGlvbl9JbXBhY3QgfCBH
+                          ZW5lX05hbWUgfCBHZW5lX0lEIHwgRmVhdHVyZV9UeXBlIHwgRmVhdHVyZV9JRCB8IFRy
+                          YW5zY3JpcHRfQmlvVHlwZSB8IFJhbmsgfCBIR1ZTLmMgfCBIR1ZTLnAgfCBjRE5BLnBv
+                          cyAvIGNETkEubGVuZ3RoIHwgQ0RTLnBvcyAvIENEUy5sZW5ndGggfCBBQS5wb3MgLyBB
+                          QS5sZW5ndGggfCBEaXN0YW5jZSB8IEVSUk9SUyAvIFdBUk5JTkdTIC8gSU5GTycgIj4K
+                          IyNJTkZPPTxJRD1MT0YsTnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IlBy
+                          ZWRpY3RlZCBsb3NzIG9mIGZ1bmN0aW9uIGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFudC4g
+                          Rm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2NyaXB0
+                          c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgojI0lO
+                          Rk89PElEPU5NRCxOdW1iZXI9LixUeXBlPVN0cmluZyxEZXNjcmlwdGlvbj0iUHJlZGlj
+                          dGVkIG5vbnNlbnNlIG1lZGlhdGVkIGRlY2F5IGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFu
+                          dC4gRm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2Ny
+                          aXB0c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgoj
+                          Q0hST00JUE9TCUlECVJFRglBTFQJUVVBTAlGSUxURVIJSU5GTwlGT1JNQVQJU2FtcGxl
+                          MQpjaHI3CTExNzI0NjgwOAkuCUcJQQkyNTkuNzMJUEFTUwlBQz0xO0FGPTAuNTAwO0FO
+                          PTI7QmFzZVFSYW5rU3VtPTEuMzczO0NsaXBwaW5nUmFua1N1bT0wLjAwMDtEUD0yNjtF
+                          eGNlc3NIZXQ9My4wMTAzO0ZTPTAuMDAwO01MRUFDPTE7TUxFQUY9MC41MDA7TVE9NjAu
+                          MDA7TVFSYW5rU3VtPTAuMDAwO1FEPTEyLjM3O1JlYWRQb3NSYW5rU3VtPS0wLjkxMztT
+                          T1I9MC41Njk7QU5OPUF8c3BsaWNlX2Rvbm9yX3ZhcmlhbnR8TU9ERVJBVEV8Q0ZUUnxF
+                          TlNHMDAwMDAwMDE2MjZ8dHJhbnNjcmlwdHxFTlNUMDAwMDAwMDMwODR8fHxjLjI5ODgr
+                          MUc+QXx8fHx8fDtDTE5TSUc9UGF0aG9nZW5pYwlHVDpBRDpEUDpHUTpQTAkwLzE6MTMs
+                          ODoyMTo5OToyOTcsMCw1MjIKY2hyMTIJMTAzMjM0MjcxCS4JRwlBCTMwMC4wCVBBU1MJ
+                          QUM9MTtBRj0wLjUwMDtBTj0yO0Jhc2VRUmFua1N1bT0xLjM3MztDbGlwcGluZ1JhbmtT
+                          dW09MC4wMDA7RFA9MjY7RXhjZXNzSGV0PTMuMDEwMztGUz0wLjAwMDtNTEVBQz0xO01M
+                          RUFGPTAuNTAwO01RPTYwLjAwO01RUmFua1N1bT0wLjAwMDtRRD0xMi4zNztSZWFkUG9z
+                          UmFua1N1bT0tMC45MTM7U09SPTAuNTY5O0FOTj1BfHN0cnVjdHVyYWxfaW50ZXJhY3Rp
+                          b25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MURN
+                          VzpBXzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8
+                          Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJ
+                          R0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxRE1XOkFfMzExLUFfNDA4
+                          OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8
+                          fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAw
+                          MDAwMTcxNzU5fGludGVyYWN0aW9ufDFKOFU6QV8zMDgtQV80MDg6RU5TVDAwMDAwNTUz
+                          MTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVy
+                          YWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50
+                          ZXJhY3Rpb258MUo4VTpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9j
+                          b2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlv
+                          bl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxS1cw
+                          OkFfMzExLUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xj
+                          LjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElH
+                          SHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDFMUk06QV8zMDgtQV80MDg6
+                          RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8
+                          fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAw
+                          MDAxNzE3NTl8aW50ZXJhY3Rpb258MUxSTTpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMx
+                          MDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJh
+                          bF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRl
+                          cmFjdGlvbnwxTU1LOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2Nv
+                          ZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9u
+                          X3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDFNTUs6
+                          QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMu
+                          MTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdI
+                          fFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MU1NVDpBXzMxMS1BXzQwODpF
+                          TlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8
+                          LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAw
+                          MDE3MTc1OXxpbnRlcmFjdGlvbnwxUEFIOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEw
+                          Nnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFs
+                          X2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVy
+                          YWN0aW9ufDFQQUg6QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29k
+                          aW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25f
+                          dmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MVREVzpB
+                          XzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4x
+                          MjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8
+                          UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxVERXOkFfMzExLUFfNDA4OkVO
+                          U1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHws
+                          QXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAw
+                          MTcxNzU5fGludGVyYWN0aW9ufDFURzI6QV8zMDgtQV80MDg6RU5TVDAwMDAwNTUzMTA2
+                          fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxf
+                          aW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJh
+                          Y3Rpb258MVRHMjpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rp
+                          bmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92
+                          YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwzUEFIOkFf
+                          MzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEy
+                          MjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQ
+                          QUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDNQQUg6QV8zMTEtQV80MDg6RU5T
+                          VDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxB
+                          fHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAx
+                          NzE3NTl8aW50ZXJhY3Rpb258NEFOUDpBXzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8
+                          cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9p
+                          bnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFj
+                          dGlvbnw0QU5QOkFfMzExLUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGlu
+                          Z3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3Zh
+                          cmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDRQQUg6QV8z
+                          MDgtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIy
+                          MkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBB
+                          SHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NFBBSDpBXzMxMS1BXzQwODpFTlNU
+                          MDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8
+                          c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3
+                          MTc1OXxpbnRlcmFjdGlvbnw1UEFIOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxw
+                          cm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2lu
+                          dGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0
+                          aW9ufDVQQUg6QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5n
+                          fDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFy
+                          aWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NlBBSDpBXzMw
+                          OC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIy
+                          Qz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFI
+                          fEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnw2UEFIOkFfMzExLUFfNDA4OkVOU1Qw
+                          MDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxt
+                          aXNzZW5zZV92YXJpYW50fE1PREVSQVRFfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNj
+                          cmlwdHxFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5U
+                          fHAuQXJnNDA4VHJwfDE2OTUvNDEyMnwxMjIyLzEzNTl8NDA4LzQ1Mnx8LEF8bWlzc2Vu
+                          c2VfdmFyaWFudHxNT0RFUkFURXxQQUh8RU5TRzAwMDAwMTcxNzU5fHRyYW5zY3JpcHR8
+                          RU5TVDAwMDAwMzA3MDAwfHByb3RlaW5fY29kaW5nfDEzLzE0fGMuMTIwN0M+VHxwLkFy
+                          ZzQwM1RycHwxNDc4LzI0Njl8MTIwNy8xMzQ0fDQwMy80NDd8fCxBfGRvd25zdHJlYW1f
+                          Z2VuZV92YXJpYW50fE1PRElGSUVSfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNjcmlw
+                          dHxFTlNUMDAwMDA1NDkyNDd8cmV0YWluZWRfaW50cm9ufHxuLiozMTUzQz5UfHx8fHwz
+                          MTUzfCxBfGRvd25zdHJlYW1fZ2VuZV92YXJpYW50fE1PRElGSUVSfFBBSHxFTlNHMDAw
+                          MDAxNzE3NTl8dHJhbnNjcmlwdHxFTlNUMDAwMDA1NTExMTR8cmV0YWluZWRfaW50cm9u
+                          fHxuLiozMjIxQz5UfHx8fHwzMjIxfDtDTE5TSUc9UGF0aG9nZW5pYwlHVDpBRDpEUDpH
+                          UTpQTAkwLzE6MTMsODoyMTo5OToyOTcsMCw1MjIKY2hyMTIJMTAzMjYwNDEwCS4JQwlU
+                          CTMwMC4wCVBBU1MJQUM9MTtBRj0wLjUwMDtBTj0yO0Jhc2VRUmFua1N1bT0xLjM3MztD
+                          bGlwcGluZ1JhbmtTdW09MC4wMDA7RFA9MjY7RXhjZXNzSGV0PTMuMDEwMztGUz0wLjAw
+                          MDtNTEVBQz0xO01MRUFGPTAuNTAwO01RPTYwLjAwO01RUmFua1N1bT0wLjAwMDtRRD0x
+                          Mi4zNztSZWFkUG9zUmFua1N1bT0tMC45MTM7U09SPTAuNTY5O0FOTj1UfHN0cnVjdHVy
+                          YWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50
+                          ZXJhY3Rpb258MURNVzpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9j
+                          b2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25f
+                          dmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MUo4VDpB
+                          XzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3
+                          M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBB
+                          SHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MUo4VTpBXzE1OC1BXzI4MDpFTlNU
+                          MDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0
+                          cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3
+                          NTl8aW50ZXJhY3Rpb258MUtXMDpBXzE1OC1BXzI0NjpFTlNUMDAwMDA1NTMxMDZ8cHJv
+                          dGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJh
+                          Y3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258
+                          MUxSTTpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8x
+                          M3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxI
+                          SUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MVBBSDpBXzE1OC1BXzI4
+                          MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8
+                          fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAw
+                          MDAxNzE3NTl8aW50ZXJhY3Rpb258MVREVzpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMx
+                          MDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxf
+                          aW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJh
+                          Y3Rpb258MVRHMjpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rp
+                          bmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFy
+                          aWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258M1BBSDpBXzE1
+                          OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+
+                          QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxF
+                          TlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NEFOUDpBXzE1OC1BXzI4MDpFTlNUMDAw
+                          MDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVj
+                          dHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8
+                          aW50ZXJhY3Rpb258NFBBSDpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVp
+                          bl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rp
+                          b25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NVBB
+                          SDpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xj
+                          LjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdI
+                          fFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NlBBSDpBXzE1OC1BXzI4MDpF
+                          TlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxU
+                          fG1pc3NlbnNlX3ZhcmlhbnR8TU9ERVJBVEV8UEFIfEVOU0cwMDAwMDE3MTc1OXx0cmFu
+                          c2NyaXB0fEVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3w1LzEzfGMuNDczRz5B
+                          fHAuQXJnMTU4R2xufDk0Ni80MTIyfDQ3My8xMzU5fDE1OC80NTJ8fCxUfG1pc3NlbnNl
+                          X3ZhcmlhbnR8TU9ERVJBVEV8UEFIfEVOU0cwMDAwMDE3MTc1OXx0cmFuc2NyaXB0fEVO
+                          U1QwMDAwMDMwNzAwMHxwcm90ZWluX2NvZGluZ3w2LzE0fGMuNDU4Rz5BfHAuQXJnMTUz
+                          R2xufDcyOS8yNDY5fDQ1OC8xMzQ0fDE1My80NDd8fCxUfGludHJvbl92YXJpYW50fE1P
+                          RElGSUVSfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNjcmlwdHxFTlNUMDAwMDA1NTE5
+                          ODh8cHJvY2Vzc2VkX3RyYW5zY3JpcHR8NC80fG4uNTMwKzEwODMwRz5BfHx8fHx8LFR8
+                          bm9uX2NvZGluZ190cmFuc2NyaXB0X2V4b25fdmFyaWFudHxNT0RJRklFUnxQQUh8RU5T
+                          RzAwMDAwMTcxNzU5fHRyYW5zY3JpcHR8RU5TVDAwMDAwNTQ5MTExfHJldGFpbmVkX2lu
+                          dHJvbnw1LzZ8bi41NjlHPkF8fHx8fHw7Q0xOU0lHPVBhdGhvZ2VuaWMJR1Q6QUQ6RFA6
+                          R1E6UEwJMC8xOjEzLDg6MjE6OTk6Mjk3LDAsNTIyCg=="/>
+          </valueAttachment>
+      	</component>
+      </Observation>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Observation"/>
+    </request>
+  </entry>
+  <!-- Observation for c.2988+1G>A interpretation -->
+  <entry>
+    <fullUrl value="urn:uuid:81642d4c-ad85-441b-b39e-c27788e59e03"/>
+    <resource>
+      <Observation>
+        <basedOn>
+          <reference value="urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"/>
+        </basedOn>
+        <status value="final"/>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="54078-1"/>
+            <display value="Cystic fibrosis newborn screening panel"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+        </subject>
+        <interpretation>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="LA6668-3"/>
+            <display value="Pathogenic"/>
+          </coding>
+        </interpretation>
+        <specimen>
+          <reference value="urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"/>
+        </specimen>
+      </Observation>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Observation"/>
+    </request>
+  </entry>
+  <!-- Observation PKU -->
+  <entry>
+    <fullUrl value="urn:uuid:02b41d94-3544-49c7-907f-e344c041637e"/>
+    <resource>
+      <Observation>
+        <contained>
+          <Organization>
+            <id value="2"/>
+            <name value="Unified State Laboratories: Public Health Newborn Screening Program"/>
+            <telecom>
+              <system value="phone"/>
+              <value value="8015848256"/>
+              <use value="work"/>
+            </telecom>
+            <telecom>
+              <system value="fax"/>
+              <value value="8015360966"/>
+              <use value="work"/>
+            </telecom>
+            <address>
+              <use value="work"/>
+              <line value="4431 South 2700 West"/>
+              <city value="Taylorsville"/>
+              <postalCode value="84129-8600"/>
+              <country value="USA"/>
+            </address>
+          </Organization>
+        </contained>
+        <!-- PKU variant c.1222C>T
+             NC_000012.11:g.103234271G>A
+             NM_000277.2:c.1222C>T
+        -->
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://www.ncbi.nlm.nih.gov/clinvar"/>
+              <code value="577"/>
+              <display value="NM_000277.2(PAH):c.1222C>T (p.Arg408Trp)"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId">
+          <valueCodeableConcept>
+            <coding>
+              <system value="https://www.ncbi.nlm.nih.gov/snp"/>
+              <code value="rs5030858"/>
+              <display value="chr12:103234271 (GRCh37.p13)"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariantName">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="48004-6"/>
+              <display value="NM_000277.2(PAH):c.1222C>T"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsGene">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://www.genenames.org"/>
+              <code value="8582"/>
+              <display value="PAH"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsAllelicState">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="LA6706-1"/>
+              <display value="Heterozygous"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsInterpretation">
+          <valueReference>
+            <reference value="urn:uuid:4ee459dc-e4af-48bb-a1fd-32b4eb8d8ce0"/>
+          </valueReference>
+        </extension>
+        <!-- PKU variant c.473G>A
+             NC_000012.11:g.103260410C>T
+             NM_000277.2:c.473G>A
+        -->
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://www.ncbi.nlm.nih.gov/clinvar"/>
+              <code value="587"/>
+              <display value="NM_000277.2(PAH):c.473G>A (p.Arg158Gln)"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId">
+          <valueCodeableConcept>
+            <coding>
+              <system value="https://www.ncbi.nlm.nih.gov/snp"/>
+              <code value="rs5030843"/>
+              <display value="chr12:103260410 (GRCh37.p13)"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariantName">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="48004-6"/>
+              <display value="NM_000277.2(PAH):c.473G>A"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsGene">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://www.genenames.org"/>
+              <code value="8582"/>
+              <display value="PAH"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsAllelicState">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="LA6706-1"/>
+              <display value="Heterozygous"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/observation-geneticsInterpretation">
+          <valueReference>
+            <reference value="urn:uuid:233ed153-1661-465d-afce-1f7888da10ae"/>
+          </valueReference>
+        </extension>
+        <basedOn>
+          <reference value="urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"/>
+        </basedOn>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+            <display value="Laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="53261-4"/>
+            <display value="Amino acid newborn screen panel"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+        </subject>
+        <issued value="2018-01-01T15:30:10+01:00"/>
+        <performer>
+            <reference value="#2"/>
+        </performer>
+        <interpretation>
+          <coding>
+            <system value="http://hl7.org/fhir/v2/0078"/>
+            <code value="A"/>
+            <display value="Abnormal"/>
+          </coding>
+        </interpretation>
+        <note>
+          <text value="Phenylketonuria (PKU) DNA Result: Positive for two pathogenic mutations: c.1222C>T/c.473G>A
+                          Interpretation: This individual has two mutations, c.1222C>T and c.473G>A, in the PAH gene.
+                          This result is consistent with the clinical diagnosis of Phenylketonuria.
+                          Method: DNA isolated from dried blood spot specimen undergoes targeted gene sequencing
+                          analysis. ACTION: REFERRAL TO METABOLIC SPECIALIST FOR DIAGNOSTIC TESTING."/>
+        </note>
+        <specimen>
+          <reference value="urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"/>
+        </specimen>
+        <component>
+          <code>
+            <coding>
+              <!-- Using general LOINC code for genetic disorders NBS interpretation https://s.details.loinc.org/LOINC/46738-1.html?sections=Comprehensive -->
+              <system value="http://loinc.org"/>
+              <code value="46738-1"/>
+              <display value="Genetic.Disorders newborn screen interpretation"/>
+            </coding>
+          </code>
+          <valueAttachment>
+            <contentType value="text/plain"/>
+            <data value="IyNmaWxlZm9ybWF0PVZDRnY0LjIKIyNyZWZlcmVuY2U9ZmlsZTovLy9nYXRrL215X2Rh
+                          dGEvdWNzYy5oZzE5LmZhc3RhCiMjU25wRWZmVmVyc2lvbj0iNC4zdCAoYnVpbGQgMjAx
+                          Ny0xMS0yNCAxMDoxOCksIGJ5IFBhYmxvIENpbmdvbGFuaSIKIyNTbnBFZmZDbWQ9IlNu
+                          cEVmZiAgR1JDaDM3Ljc1IGZpbHRlcmVkX3NucHMudmNmICIKIyNJTkZPPTxJRD1BTk4s
+                          TnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IkZ1bmN0aW9uYWwgYW5ub3Rh
+                          dGlvbnM6ICdBbGxlbGUgfCBBbm5vdGF0aW9uIHwgQW5ub3RhdGlvbl9JbXBhY3QgfCBH
+                          ZW5lX05hbWUgfCBHZW5lX0lEIHwgRmVhdHVyZV9UeXBlIHwgRmVhdHVyZV9JRCB8IFRy
+                          YW5zY3JpcHRfQmlvVHlwZSB8IFJhbmsgfCBIR1ZTLmMgfCBIR1ZTLnAgfCBjRE5BLnBv
+                          cyAvIGNETkEubGVuZ3RoIHwgQ0RTLnBvcyAvIENEUy5sZW5ndGggfCBBQS5wb3MgLyBB
+                          QS5sZW5ndGggfCBEaXN0YW5jZSB8IEVSUk9SUyAvIFdBUk5JTkdTIC8gSU5GTycgIj4K
+                          IyNJTkZPPTxJRD1MT0YsTnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IlBy
+                          ZWRpY3RlZCBsb3NzIG9mIGZ1bmN0aW9uIGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFudC4g
+                          Rm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2NyaXB0
+                          c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgojI0lO
+                          Rk89PElEPU5NRCxOdW1iZXI9LixUeXBlPVN0cmluZyxEZXNjcmlwdGlvbj0iUHJlZGlj
+                          dGVkIG5vbnNlbnNlIG1lZGlhdGVkIGRlY2F5IGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFu
+                          dC4gRm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2Ny
+                          aXB0c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgoj
+                          Q0hST00JUE9TCUlECVJFRglBTFQJUVVBTAlGSUxURVIJSU5GTwlGT1JNQVQJU2FtcGxl
+                          MQpjaHI3CTExNzI0NjgwOAkuCUcJQQkyNTkuNzMJUEFTUwlBQz0xO0FGPTAuNTAwO0FO
+                          PTI7QmFzZVFSYW5rU3VtPTEuMzczO0NsaXBwaW5nUmFua1N1bT0wLjAwMDtEUD0yNjtF
+                          eGNlc3NIZXQ9My4wMTAzO0ZTPTAuMDAwO01MRUFDPTE7TUxFQUY9MC41MDA7TVE9NjAu
+                          MDA7TVFSYW5rU3VtPTAuMDAwO1FEPTEyLjM3O1JlYWRQb3NSYW5rU3VtPS0wLjkxMztT
+                          T1I9MC41Njk7QU5OPUF8c3BsaWNlX2Rvbm9yX3ZhcmlhbnR8TU9ERVJBVEV8Q0ZUUnxF
+                          TlNHMDAwMDAwMDE2MjZ8dHJhbnNjcmlwdHxFTlNUMDAwMDAwMDMwODR8fHxjLjI5ODgr
+                          MUc+QXx8fHx8fDtDTE5TSUc9UGF0aG9nZW5pYwlHVDpBRDpEUDpHUTpQTAkwLzE6MTMs
+                          ODoyMTo5OToyOTcsMCw1MjIKY2hyMTIJMTAzMjM0MjcxCS4JRwlBCTMwMC4wCVBBU1MJ
+                          QUM9MTtBRj0wLjUwMDtBTj0yO0Jhc2VRUmFua1N1bT0xLjM3MztDbGlwcGluZ1JhbmtT
+                          dW09MC4wMDA7RFA9MjY7RXhjZXNzSGV0PTMuMDEwMztGUz0wLjAwMDtNTEVBQz0xO01M
+                          RUFGPTAuNTAwO01RPTYwLjAwO01RUmFua1N1bT0wLjAwMDtRRD0xMi4zNztSZWFkUG9z
+                          UmFua1N1bT0tMC45MTM7U09SPTAuNTY5O0FOTj1BfHN0cnVjdHVyYWxfaW50ZXJhY3Rp
+                          b25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MURN
+                          VzpBXzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8
+                          Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJ
+                          R0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxRE1XOkFfMzExLUFfNDA4
+                          OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8
+                          fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAw
+                          MDAwMTcxNzU5fGludGVyYWN0aW9ufDFKOFU6QV8zMDgtQV80MDg6RU5TVDAwMDAwNTUz
+                          MTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVy
+                          YWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50
+                          ZXJhY3Rpb258MUo4VTpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9j
+                          b2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlv
+                          bl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxS1cw
+                          OkFfMzExLUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xj
+                          LjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElH
+                          SHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDFMUk06QV8zMDgtQV80MDg6
+                          RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8
+                          fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAw
+                          MDAxNzE3NTl8aW50ZXJhY3Rpb258MUxSTTpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMx
+                          MDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJh
+                          bF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRl
+                          cmFjdGlvbnwxTU1LOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2Nv
+                          ZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9u
+                          X3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDFNTUs6
+                          QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMu
+                          MTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdI
+                          fFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MU1NVDpBXzMxMS1BXzQwODpF
+                          TlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8
+                          LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAw
+                          MDE3MTc1OXxpbnRlcmFjdGlvbnwxUEFIOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEw
+                          Nnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFs
+                          X2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVy
+                          YWN0aW9ufDFQQUg6QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29k
+                          aW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25f
+                          dmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MVREVzpB
+                          XzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4x
+                          MjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8
+                          UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxVERXOkFfMzExLUFfNDA4OkVO
+                          U1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHws
+                          QXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAw
+                          MTcxNzU5fGludGVyYWN0aW9ufDFURzI6QV8zMDgtQV80MDg6RU5TVDAwMDAwNTUzMTA2
+                          fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxf
+                          aW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJh
+                          Y3Rpb258MVRHMjpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rp
+                          bmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92
+                          YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwzUEFIOkFf
+                          MzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEy
+                          MjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQ
+                          QUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDNQQUg6QV8zMTEtQV80MDg6RU5T
+                          VDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxB
+                          fHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAx
+                          NzE3NTl8aW50ZXJhY3Rpb258NEFOUDpBXzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8
+                          cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9p
+                          bnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFj
+                          dGlvbnw0QU5QOkFfMzExLUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGlu
+                          Z3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3Zh
+                          cmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDRQQUg6QV8z
+                          MDgtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIy
+                          MkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBB
+                          SHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NFBBSDpBXzMxMS1BXzQwODpFTlNU
+                          MDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8
+                          c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3
+                          MTc1OXxpbnRlcmFjdGlvbnw1UEFIOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxw
+                          cm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2lu
+                          dGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0
+                          aW9ufDVQQUg6QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5n
+                          fDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFy
+                          aWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NlBBSDpBXzMw
+                          OC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIy
+                          Qz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFI
+                          fEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnw2UEFIOkFfMzExLUFfNDA4OkVOU1Qw
+                          MDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxt
+                          aXNzZW5zZV92YXJpYW50fE1PREVSQVRFfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNj
+                          cmlwdHxFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5U
+                          fHAuQXJnNDA4VHJwfDE2OTUvNDEyMnwxMjIyLzEzNTl8NDA4LzQ1Mnx8LEF8bWlzc2Vu
+                          c2VfdmFyaWFudHxNT0RFUkFURXxQQUh8RU5TRzAwMDAwMTcxNzU5fHRyYW5zY3JpcHR8
+                          RU5TVDAwMDAwMzA3MDAwfHByb3RlaW5fY29kaW5nfDEzLzE0fGMuMTIwN0M+VHxwLkFy
+                          ZzQwM1RycHwxNDc4LzI0Njl8MTIwNy8xMzQ0fDQwMy80NDd8fCxBfGRvd25zdHJlYW1f
+                          Z2VuZV92YXJpYW50fE1PRElGSUVSfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNjcmlw
+                          dHxFTlNUMDAwMDA1NDkyNDd8cmV0YWluZWRfaW50cm9ufHxuLiozMTUzQz5UfHx8fHwz
+                          MTUzfCxBfGRvd25zdHJlYW1fZ2VuZV92YXJpYW50fE1PRElGSUVSfFBBSHxFTlNHMDAw
+                          MDAxNzE3NTl8dHJhbnNjcmlwdHxFTlNUMDAwMDA1NTExMTR8cmV0YWluZWRfaW50cm9u
+                          fHxuLiozMjIxQz5UfHx8fHwzMjIxfDtDTE5TSUc9UGF0aG9nZW5pYwlHVDpBRDpEUDpH
+                          UTpQTAkwLzE6MTMsODoyMTo5OToyOTcsMCw1MjIKY2hyMTIJMTAzMjYwNDEwCS4JQwlU
+                          CTMwMC4wCVBBU1MJQUM9MTtBRj0wLjUwMDtBTj0yO0Jhc2VRUmFua1N1bT0xLjM3MztD
+                          bGlwcGluZ1JhbmtTdW09MC4wMDA7RFA9MjY7RXhjZXNzSGV0PTMuMDEwMztGUz0wLjAw
+                          MDtNTEVBQz0xO01MRUFGPTAuNTAwO01RPTYwLjAwO01RUmFua1N1bT0wLjAwMDtRRD0x
+                          Mi4zNztSZWFkUG9zUmFua1N1bT0tMC45MTM7U09SPTAuNTY5O0FOTj1UfHN0cnVjdHVy
+                          YWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50
+                          ZXJhY3Rpb258MURNVzpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9j
+                          b2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25f
+                          dmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MUo4VDpB
+                          XzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3
+                          M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBB
+                          SHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MUo4VTpBXzE1OC1BXzI4MDpFTlNU
+                          MDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0
+                          cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3
+                          NTl8aW50ZXJhY3Rpb258MUtXMDpBXzE1OC1BXzI0NjpFTlNUMDAwMDA1NTMxMDZ8cHJv
+                          dGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJh
+                          Y3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258
+                          MUxSTTpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8x
+                          M3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxI
+                          SUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MVBBSDpBXzE1OC1BXzI4
+                          MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8
+                          fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAw
+                          MDAxNzE3NTl8aW50ZXJhY3Rpb258MVREVzpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMx
+                          MDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxf
+                          aW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJh
+                          Y3Rpb258MVRHMjpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rp
+                          bmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFy
+                          aWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258M1BBSDpBXzE1
+                          OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+
+                          QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxF
+                          TlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NEFOUDpBXzE1OC1BXzI4MDpFTlNUMDAw
+                          MDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVj
+                          dHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8
+                          aW50ZXJhY3Rpb258NFBBSDpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVp
+                          bl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rp
+                          b25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NVBB
+                          SDpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xj
+                          LjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdI
+                          fFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NlBBSDpBXzE1OC1BXzI4MDpF
+                          TlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxU
+                          fG1pc3NlbnNlX3ZhcmlhbnR8TU9ERVJBVEV8UEFIfEVOU0cwMDAwMDE3MTc1OXx0cmFu
+                          c2NyaXB0fEVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3w1LzEzfGMuNDczRz5B
+                          fHAuQXJnMTU4R2xufDk0Ni80MTIyfDQ3My8xMzU5fDE1OC80NTJ8fCxUfG1pc3NlbnNl
+                          X3ZhcmlhbnR8TU9ERVJBVEV8UEFIfEVOU0cwMDAwMDE3MTc1OXx0cmFuc2NyaXB0fEVO
+                          U1QwMDAwMDMwNzAwMHxwcm90ZWluX2NvZGluZ3w2LzE0fGMuNDU4Rz5BfHAuQXJnMTUz
+                          R2xufDcyOS8yNDY5fDQ1OC8xMzQ0fDE1My80NDd8fCxUfGludHJvbl92YXJpYW50fE1P
+                          RElGSUVSfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNjcmlwdHxFTlNUMDAwMDA1NTE5
+                          ODh8cHJvY2Vzc2VkX3RyYW5zY3JpcHR8NC80fG4uNTMwKzEwODMwRz5BfHx8fHx8LFR8
+                          bm9uX2NvZGluZ190cmFuc2NyaXB0X2V4b25fdmFyaWFudHxNT0RJRklFUnxQQUh8RU5T
+                          RzAwMDAwMTcxNzU5fHRyYW5zY3JpcHR8RU5TVDAwMDAwNTQ5MTExfHJldGFpbmVkX2lu
+                          dHJvbnw1LzZ8bi41NjlHPkF8fHx8fHw7Q0xOU0lHPVBhdGhvZ2VuaWMJR1Q6QUQ6RFA6
+                          R1E6UEwJMC8xOjEzLDg6MjE6OTk6Mjk3LDAsNTIyCg=="/>
+          </valueAttachment>
+        </component>
+      </Observation>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Observation"/>
+    </request>
+  </entry>
+  <!-- Observation for c.1222C>T interpretation -->
+  <entry>
+    <fullUrl value="urn:uuid:4ee459dc-e4af-48bb-a1fd-32b4eb8d8ce0"/>
+    <resource>
+      <Observation>
+        <basedOn>
+          <reference value="urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"/>
+        </basedOn>
+        <status value="final"/>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="53261-4"/>
+            <display value="Amino acid newborn screen panel"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+        </subject>
+        <interpretation>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="LA6668-3"/>
+            <display value="Pathogenic"/>
+          </coding>
+        </interpretation>
+        <specimen>
+          <reference value="urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"/>
+        </specimen>
+      </Observation>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Observation"/>
+    </request>
+  </entry>
+  <!-- Observation for c.473G>A interpretation -->
+  <entry>
+    <fullUrl value="urn:uuid:233ed153-1661-465d-afce-1f7888da10ae"/>
+    <resource>
+      <Observation>
+        <basedOn>
+          <reference value="urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"/>
+        </basedOn>
+        <status value="final"/>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="53261-4"/>
+            <display value="Amino acid newborn screen panel"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"/>
+        </subject>
+        <interpretation>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="LA6668-3"/>
+            <display value="Pathogenic"/>
+          </coding>
+        </interpretation>
+        <specimen>
+          <reference value="urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"/>
+        </specimen>
+      </Observation>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Observation"/>
+    </request>
+  </entry>
+</Bundle>

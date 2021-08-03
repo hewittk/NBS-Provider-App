@@ -1,0 +1,431 @@
+{
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:90b20453-d27e-4110-91a0-104f98fdcb58",
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      },
+      "resource": {
+        "managingOrganization": {
+          "reference": "#1"
+        },
+        "identifier": [
+          {
+            "value": "123456789",
+            "type": {
+              "coding": [
+                {
+                  "code": "MR",
+                  "display": "Medical Record Number",
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
+                }
+              ]
+            },
+            "system": "urn:oid:2.16.840.1.113883.3.1205.1.1.5.100"
+          }
+        ],
+        "gender": "male",
+        "resourceType": "Patient",
+        "birthDate": "2018-01-01",
+        "name": [
+          {
+            "use": "official",
+            "given": [
+              "Dustin"
+            ],
+            "family": "Ruiz"
+          }
+        ],
+        "contained": [
+          {
+            "name": "Intermountain Healthcare",
+            "id": "1",
+            "resourceType": "Organization"
+          }
+        ],
+        "active": true
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:671c6f16-6421-488e-b180-392a1977270e",
+      "request": {
+        "method": "POST",
+        "url": "Specimen"
+      },
+      "resource": {
+        "request": [
+          {
+            "reference": "urn:uuid:7868b0e7-640e-4c86-a75b-01f40a42b643"
+          }
+        ],
+        "status": "available",
+        "type": {
+          "coding": [
+            {
+              "code": "440500007",
+              "display": "Dried blood spot specimen (specimen)",
+              "system": "http://snomed.info/sct"
+            }
+          ]
+        },
+        "resourceType": "Specimen",
+        "collection": {
+          "collectedDateTime": "2018-01-01"
+        },
+        "receivedTime": "2018-01-01",
+        "subject": {
+          "reference": "urn:uuid:90b20453-d27e-4110-91a0-104f98fdcb58"
+        },
+        "accessionIdentifier": {
+          "value": "S2860999201899",
+          "system": "urn:oid:333.444"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7868b0e7-640e-4c86-a75b-01f40a42b643",
+      "request": {
+        "method": "POST",
+        "url": "ServiceRequest"
+      },
+      "resource": {
+        "status": "completed",
+        "resourceType": "ServiceRequest",
+        "intent": "reflex-order",
+        "specimen": [
+            {
+            "reference": "urn:uuid:671c6f16-6421-488e-b180-392a1977270e"
+            }
+        ],
+        "subject": {
+          "reference": "urn:uuid:90b20453-d27e-4110-91a0-104f98fdcb58"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "LA12425-7",
+              "display": "Subsequent screen - required by law",
+              "system": "http://loinc.org"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d3d79dc1-261e-4c82-94f8-1874789e086c",
+      "request": {
+        "method": "POST",
+        "url": "DiagnosticReport"
+      },
+      "resource": {
+        "basedOn": [
+          {
+            "reference": "urn:uuid:7868b0e7-640e-4c86-a75b-01f40a42b643"
+          }
+        ],
+        "conclusion": "Consistent with clinical diagnosis of Cystic Fibrosis",
+        "contained": [
+          {
+            "telecom": [
+              {
+                "use": "work",
+                "value": "8015848256",
+                "system": "phone"
+              },
+              {
+                "use": "work",
+                "value": "8015360966",
+                "system": "fax"
+              }
+            ],
+            "id": "2",
+            "resourceType": "Organization",
+            "address": [
+              {
+                "postalCode": "84129-8600",
+                "line": [
+                  "4431 South 2700 West"
+                ],
+                "city": "Taylorsville",
+                "country": "USA",
+                "use": "work"
+              }
+            ],
+            "name": "Unified State Laboratories: Public Health Newborn Screening Program"
+          }
+        ],
+        "issued": "2018-01-01T15:30:10+01:00",
+        "subject": {
+          "reference": "urn:uuid:90b20453-d27e-4110-91a0-104f98fdcb58"
+        },
+        "status": "final",
+        "performer": [
+          {
+            "reference": "#2"
+          }
+        ],
+        "specimen": [
+          {
+            "reference": "urn:uuid:671c6f16-6421-488e-b180-392a1977270e"
+          }
+        ],
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "LAB",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:17d9ec52-5f1f-4adb-9d80-23da6d70ab08",
+            "display": "Cystic Fibrosis CFTR DNA"
+          },
+          {
+            "reference": "surn:uuid:28a6704e-8124-44d3-876b-be518a932468",
+            "display": "Cystic Fibrosis CFTR DNA"
+          }
+        ],
+        "resourceType": "DiagnosticReport",
+        "code": {
+          "coding": [
+            {
+              "code": "54089-8",
+              "display": "Newborn screening panel American Health Information Community (AHIC)",
+              "system": "http://loinc.org"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:17d9ec52-5f1f-4adb-9d80-23da6d70ab08",
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "7105",
+                  "display": "NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)",
+                  "system": "http://www.ncbi.nlm.nih.gov/clinvar"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "rs113993960",
+                  "display": "chr7:117199646-117199648 (GRCh37.p13)",
+                  "system": "https://www.ncbi.nlm.nih.gov/snp"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariantName",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "48004-6",
+                  "display": "NM_000492.3(CFTR):c.1521_1523delCTT",
+                  "system": "http://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsGene",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "1884",
+                  "display": "CFTR",
+                  "system": "http://www.genenames.org"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsAllelicState",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6705-3",
+                  "display": "Homozygous",
+                  "system": "http://loinc.org"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsInterpretation",
+            "valueReference": {
+              "reference": "urn:uuid:28a6704e-8124-44d3-876b-be518a932468"
+            }
+          }
+        ],
+        "resourceType": "Observation",
+        "component": [
+          {
+            "valueAttachment": {
+              "data": "IyNmaWxlZm9ybWF0PVZDRnY0LjINCiMjcmVmZXJlbmNlPWZpbGU6Ly8vZ2F0ay9teV9k\n            \t\t\t\t\t\t\t\t\tYXRhL3Vjc2MuaGcxOS5mYXN0YQ0KIyNTbnBFZmZWZXJzaW9uPSI0LjN0IChidWlsZCAy\n            \t\t\t\t\t\t\t\t\tMDE3LTExLTI0IDEwOjE4KSwgYnkgUGFibG8gQ2luZ29sYW5pIg0KIyNTbnBFZmZDbWQ9\n            \t\t\t\t\t\t\t\t\tIlNucEVmZiAgR1JDaDM3Ljc1IGZpbHRlcmVkX3NucHMudmNmICINCiMjSU5GTz08SUQ9\n            \t\t\t\t\t\t\t\t\tQU5OLE51bWJlcj0uLFR5cGU9U3RyaW5nLERlc2NyaXB0aW9uPSJGdW5jdGlvbmFsIGFu\n            \t\t\t\t\t\t\t\t\tbm90YXRpb25zOiAnQWxsZWxlIHwgQW5ub3RhdGlvbiB8IEFubm90YXRpb25fSW1wYWN0\n            \t\t\t\t\t\t\t\t\tIHwgR2VuZV9OYW1lIHwgR2VuZV9JRCB8IEZlYXR1cmVfVHlwZSB8IEZlYXR1cmVfSUQg\n            \t\t\t\t\t\t\t\t\tfCBUcmFuc2NyaXB0X0Jpb1R5cGUgfCBSYW5rIHwgSEdWUy5jIHwgSEdWUy5wIHwgY0RO\n            \t\t\t\t\t\t\t\t\tQS5wb3MgLyBjRE5BLmxlbmd0aCB8IENEUy5wb3MgLyBDRFMubGVuZ3RoIHwgQUEucG9z\n            \t\t\t\t\t\t\t\t\tIC8gQUEubGVuZ3RoIHwgRGlzdGFuY2UgfCBFUlJPUlMgLyBXQVJOSU5HUyAvIElORk8n\n            \t\t\t\t\t\t\t\t\tICI+DQojI0lORk89PElEPUxPRixOdW1iZXI9LixUeXBlPVN0cmluZyxEZXNjcmlwdGlv\n            \t\t\t\t\t\t\t\t\tbj0iUHJlZGljdGVkIGxvc3Mgb2YgZnVuY3Rpb24gZWZmZWN0cyBmb3IgdGhpcyB2YXJp\n            \t\t\t\t\t\t\t\t\tYW50LiBGb3JtYXQ6ICdHZW5lX05hbWUgfCBHZW5lX0lEIHwgTnVtYmVyX29mX3RyYW5z\n            \t\t\t\t\t\t\t\t\tY3JpcHRzX2luX2dlbmUgfCBQZXJjZW50X29mX3RyYW5zY3JpcHRzX2FmZmVjdGVkJyI+\n            \t\t\t\t\t\t\t\t\tDQojI0lORk89PElEPU5NRCxOdW1iZXI9LixUeXBlPVN0cmluZyxEZXNjcmlwdGlvbj0i\n            \t\t\t\t\t\t\t\t\tUHJlZGljdGVkIG5vbnNlbnNlIG1lZGlhdGVkIGRlY2F5IGVmZmVjdHMgZm9yIHRoaXMg\n            \t\t\t\t\t\t\t\t\tdmFyaWFudC4gRm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90\n            \t\t\t\t\t\t\t\t\tcmFuc2NyaXB0c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3Rl\n            \t\t\t\t\t\t\t\t\tZCciPg0KI0NIUk9NICBQT1MgICAgIElEICAgICAgUkVGICAgICBBTFQgICAgIFFVQUwg\n            \t\t\t\t\t\t\t\t\tICAgRklMVEVSICBJTkZPICAgIEZPUk1BVCAgU2FtcGxlMQ0KY2hyNyAgICAxMTcxOTk2\n            \t\t\t\t\t\t\t\t\tNDQgICAgICAgLiAgICAgICBBVENUICAgIEEgICAgICAgMjU5LjczICBQQVNTICAgIEFD\n            \t\t\t\t\t\t\t\t\tPTE7QUY9MC41MDA7QU49MjtCYXNlUVJhbmtTdW09MS4zNzM7Q2xpcHBpbmdSYW5rU3Vt\n            \t\t\t\t\t\t\t\t\tPTAuMDAwO0RQPTI2O0V4Y2Vzc0hldD0zLjAxMDM7RlM9MC4wMDA7TUxFQUM9MTtNTEVB\n            \t\t\t\t\t\t\t\t\tRj0wLjUwMDtNUT02MC4wMDtNUVJhbmtTdW09MC4wMDA7UUQ9MTIuMzc7UmVhZFBvc1Jh\n            \t\t\t\t\t\t\t\t\tbmtTdW09LTAuOTEzO1NPUj0wLjU2OTtBTk49QXxkaXNydXB0aXZlX2luZnJhbWVfZGVs\n            \t\t\t\t\t\t\t\t\tZXRpb258TU9ERVJBVEV8Q0ZUUnxFTlNHMDAwMDAwMDE2MjZ8dHJhbnNjcmlwdHxFTlNU\n            \t\t\t\t\t\t\t\t\tMDAwMDAwMDMwODR8cHJvdGVpbl9jb2Rpbmd8MTEvMjd8Yy4xNTIxXzE1MjNkZWxDVFR8\n            \t\t\t\t\t\t\t\t\tcC5QaGU1MDhkZWx8MTY1My82MTI4fDE1MjEvNDQ0M3w1MDcvMTQ4MHx8SU5GT19SRUFM\n            \t\t\t\t\t\t\t\t\tSUdOXzNfUFJJTUU7Q0xOU0lHPVBhdGhvZ2VuaWMgICAgR1Q6QUQ6RFA6R1E6UEwgIDEv\n            \t\t\t\t\t\t\t\t\tMToxMyw4OjIxOjk5OjI5NywwLDUyMg==",
+              "contentType": "text/plain"
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "54083-1",
+                  "display": "CFTR gene mutations found [Identifier] in DBS by Molecular genetics method Nominal",
+                  "system": "http://loinc.org"
+                }
+              ]
+            }
+          }
+        ],
+        "specimen": {
+          "reference": "urn:uuid:671c6f16-6421-488e-b180-392a1977270e"
+        },
+        "contained": [
+          {
+            "telecom": [
+              {
+                "use": "work",
+                "value": "8015848256",
+                "system": "phone"
+              },
+              {
+                "use": "work",
+                "value": "8015360966",
+                "system": "fax"
+              }
+            ],
+            "id": "2",
+            "resourceType": "Organization",
+            "address": [
+              {
+                "postalCode": "84129-8600",
+                "line": [
+                  "4431 South 2700 West"
+                ],
+                "city": "Taylorsville",
+                "country": "USA",
+                "use": "work"
+              }
+            ],
+            "name": "Unified State Laboratories: Public Health Newborn Screening Program"
+          }
+        ],
+        "issued": "2018-01-01T15:30:10+01:00",
+        "performer": [
+          {
+            "reference": "#2"
+          }
+        ],
+        "status": "final",
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "code": "A",
+                "display": "Abnormal",
+                "system": "http://hl7.org/fhir/v2/0078"
+              }
+            ]
+          }
+        ],
+        "note":
+        [
+          {
+            "text": "Cystic Fibrosis DNA result: Positive for two pathogenic mutations: deltaF508/deltaF508.\n  \t\t\t\t\t\t\t\t\t    Interpretation: This individual is homozygous for the deltaF508 mutation in the CFTR gene.\n  \t\t\t\t\t\t\t\t\t    This result is consistent with the clinical diagnosis of Cystic Fibrosis. Method: DNA\n  \t\t\t\t\t\t\t\t\t    isolated from dried blood spot specimen undergoes CFTR mutation detection assay using\n  \t\t\t\t\t\t\t\t\t    Luminex xTAG Cystic Fibrosis v2 (CF60) v.02. ACTION: URGENT SWEAT CHLORIDE TESTING AND\n  \t\t\t\t\t\t\t\t\t    REFERRAL TO THE CYSTIC FIBROSIS CENTER (801) 213-3599."
+          }
+        ],
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "laboratory",
+                "display": "Laboratory",
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:90b20453-d27e-4110-91a0-104f98fdcb58"
+        },
+        "basedOn": [
+          {
+            "reference": "urn:uuid:7868b0e7-640e-4c86-a75b-01f40a42b643"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "54078-1",
+              "display": "Cystic fibrosis newborn screening panel",
+              "system": "http://loinc.org"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:28a6704e-8124-44d3-876b-be518a932468",
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "status": "final",
+        "specimen": {
+          "reference": "urn:uuid:671c6f16-6421-488e-b180-392a1977270e"
+        },
+        "resourceType": "Observation",
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "code": "LA6668-3",
+                "display": "Pathogenic",
+                "system": "http://loinc.org"
+              }
+            ]
+          }
+        ],
+        "basedOn": [
+          {
+            "reference": "urn:uuid:7868b0e7-640e-4c86-a75b-01f40a42b643"
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:90b20453-d27e-4110-91a0-104f98fdcb58"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "54078-1",
+              "display": "Cystic fibrosis newborn screening panel",
+              "system": "http://loinc.org"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "type": "transaction",
+  "resourceType": "Bundle"
+}

@@ -1,0 +1,250 @@
+<Bundle xmlns="http://hl7.org/fhir">
+  <type value="transaction"/>
+  <!-- Patient - Normal -->
+  <entry>
+    <fullUrl value="urn:uuid:69dd52e9-5112-4749-9f8f-7c026f816cb6"/>
+    <resource>
+      <Patient>
+        <contained>
+      		<Organization>
+      			<id value="1"/>
+      			<name value="Intermountain Healthcare"/>
+      		</Organization>
+      	</contained>
+        <identifier>
+      		<type>
+      			<coding>
+      				<system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+      				<code value="MR"/>
+      				<display value="Medical Record Number"/>
+      			</coding>
+      		</type>
+          <system value="urn:oid:2.16.840.1.113883.3.1205.1.1.5.100"/>
+      		<value value="555555555"/>
+      	</identifier>
+      	<active value="true"/>
+      	<name>
+      		<use value="official"/>
+      		<family value="Smith"/>
+      		<given value="Beth"/>
+      	</name>
+      	<gender value="female"/>
+      	<birthDate value="2018-01-01"/>
+      	<managingOrganization>
+      		<reference value="#1"/>
+      	</managingOrganization>
+      </Patient>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Patient"/>
+    </request>
+  </entry>
+  <!-- Specimen -->
+  <entry>
+    <fullUrl value="urn:uuid:4757a171-1ea6-4252-bba0-cc9af16a94bd"/>
+    <resource>
+      <Specimen>
+        <accessionIdentifier>
+      		<system value="urn:oid:333.444"/>
+      		<value value="S2860999201901"/>
+      	</accessionIdentifier>
+      	<status value="available"/>
+      	<type>
+      		<coding>
+      			<system value="http://snomed.info/sct"/>
+      			<code value="440500007"/>
+      			<display value="Dried blood spot specimen (specimen)"/>
+      		</coding>
+      	</type>
+      	<subject>
+      		<reference value="urn:uuid:69dd52e9-5112-4749-9f8f-7c026f816cb6"/>
+      	</subject>
+      	<receivedTime value="2018-01-01"/>
+      	<request>
+          <reference value="urn:uuid:4fff1f86-bfce-4673-9d01-56b6cc92c750"/>
+      	</request>
+      	<collection>
+      		<collectedDateTime value="2018-01-01"/>
+      	</collection>
+      </Specimen>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Specimen"/>
+    </request>
+  </entry>
+  <!-- ServiceRequest -->
+  <entry>
+    <fullUrl value="urn:uuid:4fff1f86-bfce-4673-9d01-56b6cc92c750"/>
+    <resource>
+      <ServiceRequest>
+        <status value="completed"/>
+        <intent value="reflex-order"/>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="LA12425-7"/>
+            <display value="Subsequent screen - required by law"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:69dd52e9-5112-4749-9f8f-7c026f816cb6"/>
+        </subject>
+        <specimen>
+          <reference value="urn:uuid:4757a171-1ea6-4252-bba0-cc9af16a94bd"/>
+        </specimen>
+      </ServiceRequest>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="ServiceRequest"/>
+    </request>
+  </entry>
+  <!-- DiagnosticReport -->
+  <entry>
+    <fullUrl value="urn:uuid:829f49e6-0010-4eb3-b47c-bfc8ef0f2bb8"/>
+    <resource>
+      <DiagnosticReport>
+        <contained>
+      		<Organization>
+      			<id value="2"/>
+      			<name value="Unified State Laboratories: Public Health Newborn Screening Program"/>
+      			<telecom>
+      				<system value="phone"/>
+      				<value value="8015848256"/>
+      				<use value="work"/>
+      			</telecom>
+      			<telecom>
+      				<system value="fax"/>
+      				<value value="8015360966"/>
+      				<use value="work"/>
+      			</telecom>
+      			<address>
+      				<use value="work"/>
+      				<line value="4431 South 2700 West"/>
+      				<city value="Taylorsville"/>
+      				<postalCode value="84129-8600"/>
+      				<country value="USA"/>
+      			</address>
+      		</Organization>
+      	</contained>
+        <basedOn>
+          <reference value="urn:uuid:4fff1f86-bfce-4673-9d01-56b6cc92c750"/>
+        </basedOn>
+        <status value="final"/>
+      	<category>
+      		<coding>
+      			<system value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
+      			<code value="LAB"/>
+      			<display value="Laboratory"/>
+      		</coding>
+      	</category>
+      	<code>
+      		<coding>
+      			<system value="http://loinc.org"/>
+      			<code value="54089-8"/>
+      			<display value="Newborn screening panel American Health Information Community (AHIC)"/>
+      		</coding>
+      	</code>
+      	<subject>
+          <reference value="urn:uuid:69dd52e9-5112-4749-9f8f-7c026f816cb6"/>
+        </subject>
+        <issued value="2018-01-01T15:30:10+01:00"/>
+      	<performer>
+    			<reference value="#2"/>
+      	</performer>
+      	<specimen>
+          <reference value="urn:uuid:4757a171-1ea6-4252-bba0-cc9af16a94bd"/>
+        </specimen>
+        <result>
+          <reference value="urn:uuid:6c24d7f3-3eb5-4646-9cff-3a65bf504c59"/>
+          <display value="Cystic Fibrosis CFTR DNA"/>
+        </result>
+        <conclusion value="No CFTR mutations detected"/>
+      </DiagnosticReport>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="DiagnosticReport"/>
+    </request>
+  </entry>
+  <!-- Observation -->
+  <entry>
+    <fullUrl value="urn:uuid:6c24d7f3-3eb5-4646-9cff-3a65bf504c59"/>
+    <resource>
+      <Observation>
+        <contained>
+      		<Organization>
+      			<id value="2"/>
+      			<name value="Unified State Laboratories: Public Health Newborn Screening Program"/>
+      			<telecom>
+      				<system value="phone"/>
+      				<value value="8015848256"/>
+      				<use value="work"/>
+      			</telecom>
+      			<telecom>
+      				<system value="fax"/>
+      				<value value="8015360966"/>
+      				<use value="work"/>
+      			</telecom>
+      			<address>
+      				<use value="work"/>
+      				<line value="4431 South 2700 West"/>
+      				<city value="Taylorsville"/>
+      				<postalCode value="84129-8600"/>
+      				<country value="USA"/>
+      			</address>
+      		</Organization>
+      	</contained>
+        <basedOn>
+          <reference value="urn:uuid:4fff1f86-bfce-4673-9d01-56b6cc92c750"/>
+        </basedOn>
+        <status value="final"/>
+      	<category>
+      		<coding>
+      			<system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      			<code value="laboratory"/>
+      			<display value="Laboratory"/>
+      		</coding>
+      	</category>
+      	<code>
+      		<coding>
+      			<system value="http://loinc.org"/>
+      			<code value="54078-1"/>
+      			<display value="Cystic fibrosis newborn screening panel"/>
+      		</coding>
+      	</code>
+      	<subject>
+        	<reference value="urn:uuid:69dd52e9-5112-4749-9f8f-7c026f816cb6"/>
+        </subject>
+      	<issued value="2018-01-01T15:30:10+01:00"/>
+      	<performer>
+    			<reference value="#2"/>
+      	</performer>
+      	<interpretation>
+      		<coding>
+      			<system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+      			<code value="N"/>
+      			<display value="Normal"/>
+      		</coding>
+      	</interpretation>
+        <note>
+        	<text value="Cystic Fibrosis DNA result: No mutations detected.
+        									Interpretation: This patient was negative for the 60 mutations analyzed in this assay.
+        									This result reduces the likelihood but does not rule out the possibility that this
+        									individual is affected with cystic fibrosis.  Method: DNA isolated from dried blood
+        									spot specimen undergoes CFTR mutation detection assay using Luminex xTAG Cystic
+        									Fibrosis v2 (CF60) v.02."/>
+        </note>
+        <specimen>
+      		<reference value="urn:uuid:4757a171-1ea6-4252-bba0-cc9af16a94bd"/>
+      	</specimen>
+      </Observation>
+    </resource>
+    <request>
+      <method value="POST"/>
+      <url value="Observation"/>
+    </request>
+  </entry>
+</Bundle>

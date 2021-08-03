@@ -1,0 +1,769 @@
+{
+  "type": "transaction",
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "managingOrganization": {
+          "reference": "#1"
+        },
+        "gender": "male",
+        "resourceType": "Patient",
+        "birthDate": "2018-01-01",
+        "active": true,
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.3.1205.1.1.5.100",
+            "type": {
+              "coding": [
+                {
+                  "code": "MR",
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "display": "Medical Record Number"
+                }
+              ]
+            },
+            "value": "123789456"
+          }
+        ],
+        "name": [
+          {
+            "family": "Pibbles",
+            "use": "official",
+            "given": [
+              "Shrimply"
+            ]
+          }
+        ],
+        "contained": [
+          {
+            "id": "1",
+            "resourceType": "Organization",
+            "name": "Intermountain Healthcare"
+          }
+        ]
+      },
+      "request": {
+        "url": "Patient",
+        "method": "POST"
+      },
+      "fullUrl": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+    },
+    {
+      "resource": {
+        "receivedTime": "2018-01-01",
+        "subject": {
+          "reference": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+        },
+        "resourceType": "Specimen",
+        "collection": {
+          "collectedDateTime": "2018-01-01"
+        },
+        "accessionIdentifier": {
+          "system": "urn:oid:333.444",
+          "value": "S2860999202010"
+        },
+        "type": {
+          "coding": [
+            {
+              "code": "440500007",
+              "system": "http://snomed.info/sct",
+              "display": "Dried blood spot specimen (specimen)"
+            }
+          ]
+        },
+        "status": "available",
+        "request": [
+          {
+            "reference": "urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"
+          }
+        ]
+      },
+      "request": {
+        "url": "Specimen",
+        "method": "POST"
+      },
+      "fullUrl": "urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"
+    },
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "LA12425-7",
+              "display": "Subsequent screen - required by law",
+              "system": "http://loinc.org"
+            }
+          ]
+        },
+        "intent": "reflex-order",
+        "resourceType": "ServiceRequest",
+        "specimen": [
+          {
+            "reference": "urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"
+          }
+        ],
+        "status": "completed",
+        "subject": {
+          "reference": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+        }
+      },
+      "request": {
+        "url": "ServiceRequest",
+        "method": "POST"
+      },
+      "fullUrl": "urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"
+    },
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "54089-8",
+              "system": "http://loinc.org",
+              "display": "Newborn screening panel American Health Information Community (AHIC)"
+            }
+          ]
+        },
+        "resourceType": "DiagnosticReport",
+        "specimen": [
+          {
+            "reference": "urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"
+          }
+        ],
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "LAB",
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "issued": "2018-01-01T15:30:10+01:00",
+        "performer": [
+          {
+            "reference": "#2"
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+        },
+        "basedOn": [
+          {
+            "reference": "urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"
+          }
+        ],
+        "conclusion": "Conisistent with clinical diagnosis of Phenylketonuria and Cystic Fibrosis carrier",
+        "contained": [
+          {
+            "resourceType": "Organization",
+            "address": [
+              {
+                "line": [
+                  "4431 South 2700 West"
+                ],
+                "city": "Taylorsville",
+                "postalCode": "84129-8600",
+                "use": "work",
+                "country": "USA"
+              }
+            ],
+            "id": "2",
+            "name": "Unified State Laboratories: Public Health Newborn Screening Program",
+            "telecom": [
+              {
+                "system": "phone",
+                "use": "work",
+                "value": "8015848256"
+              },
+              {
+                "system": "fax",
+                "use": "work",
+                "value": "8015360966"
+              }
+            ]
+          }
+        ],
+        "status": "final",
+        "result": [
+          {
+            "display": "Cystic Fibrosis CFTR DNA",
+            "reference": "urn:uuid:65affd39-9def-446b-bb26-0e8ebbbc01da"
+          },
+          {
+            "display": "Cystic Fibrosis CFTR DNA",
+            "reference": "Observation/81642d4c-ad85-441b-b39e-c27788e59e03"
+          },
+          {
+            "display": "Phenylketonuria PAH DNA",
+            "reference": "urn:uuid:02b41d94-3544-49c7-907f-e344c041637e"
+          },
+          {
+            "display": "Phenylketonuria PAH DNA",
+            "reference": "urn:uuid:4ee459dc-e4af-48bb-a1fd-32b4eb8d8ce0"
+          },
+          {
+            "display": "Phenylketonuria PAH DNA",
+            "reference": "urn:uuid:233ed153-1661-465d-afce-1f7888da10ae"
+          }
+        ]
+      },
+      "fullUrl": "urn:uuid:bfe33dd2-a521-492c-9718-d0340695a986"
+    },
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "54078-1",
+              "system": "http://loinc.org",
+              "display": "Cystic fibrosis newborn screening panel"
+            }
+          ]
+        },
+        "resourceType": "Observation",
+        "specimen": {
+          "reference": "urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "laboratory",
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "54083-1",
+                  "system": "http://loinc.org",
+                  "display": "CFTR gene mutations found [Identifier] in DBS by Molecular genetics method Nominal"
+                }
+              ]
+            },
+            "valueAttachment": {
+              "data": "IyNmaWxlZm9ybWF0PVZDRnY0LjIKIyNyZWZlcmVuY2U9ZmlsZTovLy9nYXRrL215X2Rh\n                          dGEvdWNzYy5oZzE5LmZhc3RhCiMjU25wRWZmVmVyc2lvbj0iNC4zdCAoYnVpbGQgMjAx\n                          Ny0xMS0yNCAxMDoxOCksIGJ5IFBhYmxvIENpbmdvbGFuaSIKIyNTbnBFZmZDbWQ9IlNu\n                          cEVmZiAgR1JDaDM3Ljc1IGZpbHRlcmVkX3NucHMudmNmICIKIyNJTkZPPTxJRD1BTk4s\n                          TnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IkZ1bmN0aW9uYWwgYW5ub3Rh\n                          dGlvbnM6ICdBbGxlbGUgfCBBbm5vdGF0aW9uIHwgQW5ub3RhdGlvbl9JbXBhY3QgfCBH\n                          ZW5lX05hbWUgfCBHZW5lX0lEIHwgRmVhdHVyZV9UeXBlIHwgRmVhdHVyZV9JRCB8IFRy\n                          YW5zY3JpcHRfQmlvVHlwZSB8IFJhbmsgfCBIR1ZTLmMgfCBIR1ZTLnAgfCBjRE5BLnBv\n                          cyAvIGNETkEubGVuZ3RoIHwgQ0RTLnBvcyAvIENEUy5sZW5ndGggfCBBQS5wb3MgLyBB\n                          QS5sZW5ndGggfCBEaXN0YW5jZSB8IEVSUk9SUyAvIFdBUk5JTkdTIC8gSU5GTycgIj4K\n                          IyNJTkZPPTxJRD1MT0YsTnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IlBy\n                          ZWRpY3RlZCBsb3NzIG9mIGZ1bmN0aW9uIGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFudC4g\n                          Rm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2NyaXB0\n                          c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgojI0lO\n                          Rk89PElEPU5NRCxOdW1iZXI9LixUeXBlPVN0cmluZyxEZXNjcmlwdGlvbj0iUHJlZGlj\n                          dGVkIG5vbnNlbnNlIG1lZGlhdGVkIGRlY2F5IGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFu\n                          dC4gRm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2Ny\n                          aXB0c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgoj\n                          Q0hST00JUE9TCUlECVJFRglBTFQJUVVBTAlGSUxURVIJSU5GTwlGT1JNQVQJU2FtcGxl\n                          MQpjaHI3CTExNzI0NjgwOAkuCUcJQQkyNTkuNzMJUEFTUwlBQz0xO0FGPTAuNTAwO0FO\n                          PTI7QmFzZVFSYW5rU3VtPTEuMzczO0NsaXBwaW5nUmFua1N1bT0wLjAwMDtEUD0yNjtF\n                          eGNlc3NIZXQ9My4wMTAzO0ZTPTAuMDAwO01MRUFDPTE7TUxFQUY9MC41MDA7TVE9NjAu\n                          MDA7TVFSYW5rU3VtPTAuMDAwO1FEPTEyLjM3O1JlYWRQb3NSYW5rU3VtPS0wLjkxMztT\n                          T1I9MC41Njk7QU5OPUF8c3BsaWNlX2Rvbm9yX3ZhcmlhbnR8TU9ERVJBVEV8Q0ZUUnxF\n                          TlNHMDAwMDAwMDE2MjZ8dHJhbnNjcmlwdHxFTlNUMDAwMDAwMDMwODR8fHxjLjI5ODgr\n                          MUc+QXx8fHx8fDtDTE5TSUc9UGF0aG9nZW5pYwlHVDpBRDpEUDpHUTpQTAkwLzE6MTMs\n                          ODoyMTo5OToyOTcsMCw1MjIKY2hyMTIJMTAzMjM0MjcxCS4JRwlBCTMwMC4wCVBBU1MJ\n                          QUM9MTtBRj0wLjUwMDtBTj0yO0Jhc2VRUmFua1N1bT0xLjM3MztDbGlwcGluZ1JhbmtT\n                          dW09MC4wMDA7RFA9MjY7RXhjZXNzSGV0PTMuMDEwMztGUz0wLjAwMDtNTEVBQz0xO01M\n                          RUFGPTAuNTAwO01RPTYwLjAwO01RUmFua1N1bT0wLjAwMDtRRD0xMi4zNztSZWFkUG9z\n                          UmFua1N1bT0tMC45MTM7U09SPTAuNTY5O0FOTj1BfHN0cnVjdHVyYWxfaW50ZXJhY3Rp\n                          b25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MURN\n                          VzpBXzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8\n                          Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJ\n                          R0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxRE1XOkFfMzExLUFfNDA4\n                          OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8\n                          fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAw\n                          MDAwMTcxNzU5fGludGVyYWN0aW9ufDFKOFU6QV8zMDgtQV80MDg6RU5TVDAwMDAwNTUz\n                          MTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVy\n                          YWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50\n                          ZXJhY3Rpb258MUo4VTpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9j\n                          b2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlv\n                          bl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxS1cw\n                          OkFfMzExLUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xj\n                          LjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElH\n                          SHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDFMUk06QV8zMDgtQV80MDg6\n                          RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8\n                          fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAw\n                          MDAxNzE3NTl8aW50ZXJhY3Rpb258MUxSTTpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMx\n                          MDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJh\n                          bF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRl\n                          cmFjdGlvbnwxTU1LOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2Nv\n                          ZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9u\n                          X3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDFNTUs6\n                          QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMu\n                          MTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdI\n                          fFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MU1NVDpBXzMxMS1BXzQwODpF\n                          TlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8\n                          LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAw\n                          MDE3MTc1OXxpbnRlcmFjdGlvbnwxUEFIOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEw\n                          Nnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFs\n                          X2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVy\n                          YWN0aW9ufDFQQUg6QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29k\n                          aW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25f\n                          dmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MVREVzpB\n                          XzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4x\n                          MjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8\n                          UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxVERXOkFfMzExLUFfNDA4OkVO\n                          U1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHws\n                          QXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAw\n                          MTcxNzU5fGludGVyYWN0aW9ufDFURzI6QV8zMDgtQV80MDg6RU5TVDAwMDAwNTUzMTA2\n                          fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxf\n                          aW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJh\n                          Y3Rpb258MVRHMjpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rp\n                          bmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92\n                          YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwzUEFIOkFf\n                          MzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEy\n                          MjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQ\n                          QUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDNQQUg6QV8zMTEtQV80MDg6RU5T\n                          VDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxB\n                          fHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAx\n                          NzE3NTl8aW50ZXJhY3Rpb258NEFOUDpBXzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8\n                          cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9p\n                          bnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFj\n                          dGlvbnw0QU5QOkFfMzExLUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGlu\n                          Z3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3Zh\n                          cmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDRQQUg6QV8z\n                          MDgtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIy\n                          MkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBB\n                          SHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NFBBSDpBXzMxMS1BXzQwODpFTlNU\n                          MDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8\n                          c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3\n                          MTc1OXxpbnRlcmFjdGlvbnw1UEFIOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxw\n                          cm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2lu\n                          dGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0\n                          aW9ufDVQQUg6QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5n\n                          fDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFy\n                          aWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NlBBSDpBXzMw\n                          OC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIy\n                          Qz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFI\n                          fEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnw2UEFIOkFfMzExLUFfNDA4OkVOU1Qw\n                          MDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxt\n                          aXNzZW5zZV92YXJpYW50fE1PREVSQVRFfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNj\n                          cmlwdHxFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5U\n                          fHAuQXJnNDA4VHJwfDE2OTUvNDEyMnwxMjIyLzEzNTl8NDA4LzQ1Mnx8LEF8bWlzc2Vu\n                          c2VfdmFyaWFudHxNT0RFUkFURXxQQUh8RU5TRzAwMDAwMTcxNzU5fHRyYW5zY3JpcHR8\n                          RU5TVDAwMDAwMzA3MDAwfHByb3RlaW5fY29kaW5nfDEzLzE0fGMuMTIwN0M+VHxwLkFy\n                          ZzQwM1RycHwxNDc4LzI0Njl8MTIwNy8xMzQ0fDQwMy80NDd8fCxBfGRvd25zdHJlYW1f\n                          Z2VuZV92YXJpYW50fE1PRElGSUVSfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNjcmlw\n                          dHxFTlNUMDAwMDA1NDkyNDd8cmV0YWluZWRfaW50cm9ufHxuLiozMTUzQz5UfHx8fHwz\n                          MTUzfCxBfGRvd25zdHJlYW1fZ2VuZV92YXJpYW50fE1PRElGSUVSfFBBSHxFTlNHMDAw\n                          MDAxNzE3NTl8dHJhbnNjcmlwdHxFTlNUMDAwMDA1NTExMTR8cmV0YWluZWRfaW50cm9u\n                          fHxuLiozMjIxQz5UfHx8fHwzMjIxfDtDTE5TSUc9UGF0aG9nZW5pYwlHVDpBRDpEUDpH\n                          UTpQTAkwLzE6MTMsODoyMTo5OToyOTcsMCw1MjIKY2hyMTIJMTAzMjYwNDEwCS4JQwlU\n                          CTMwMC4wCVBBU1MJQUM9MTtBRj0wLjUwMDtBTj0yO0Jhc2VRUmFua1N1bT0xLjM3MztD\n                          bGlwcGluZ1JhbmtTdW09MC4wMDA7RFA9MjY7RXhjZXNzSGV0PTMuMDEwMztGUz0wLjAw\n                          MDtNTEVBQz0xO01MRUFGPTAuNTAwO01RPTYwLjAwO01RUmFua1N1bT0wLjAwMDtRRD0x\n                          Mi4zNztSZWFkUG9zUmFua1N1bT0tMC45MTM7U09SPTAuNTY5O0FOTj1UfHN0cnVjdHVy\n                          YWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50\n                          ZXJhY3Rpb258MURNVzpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9j\n                          b2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25f\n                          dmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MUo4VDpB\n                          XzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3\n                          M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBB\n                          SHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MUo4VTpBXzE1OC1BXzI4MDpFTlNU\n                          MDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0\n                          cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3\n                          NTl8aW50ZXJhY3Rpb258MUtXMDpBXzE1OC1BXzI0NjpFTlNUMDAwMDA1NTMxMDZ8cHJv\n                          dGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJh\n                          Y3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258\n                          MUxSTTpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8x\n                          M3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxI\n                          SUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MVBBSDpBXzE1OC1BXzI4\n                          MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8\n                          fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAw\n                          MDAxNzE3NTl8aW50ZXJhY3Rpb258MVREVzpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMx\n                          MDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxf\n                          aW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJh\n                          Y3Rpb258MVRHMjpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rp\n                          bmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFy\n                          aWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258M1BBSDpBXzE1\n                          OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+\n                          QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxF\n                          TlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NEFOUDpBXzE1OC1BXzI4MDpFTlNUMDAw\n                          MDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVj\n                          dHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8\n                          aW50ZXJhY3Rpb258NFBBSDpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVp\n                          bl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rp\n                          b25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NVBB\n                          SDpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xj\n                          LjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdI\n                          fFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NlBBSDpBXzE1OC1BXzI4MDpF\n                          TlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxU\n                          fG1pc3NlbnNlX3ZhcmlhbnR8TU9ERVJBVEV8UEFIfEVOU0cwMDAwMDE3MTc1OXx0cmFu\n                          c2NyaXB0fEVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3w1LzEzfGMuNDczRz5B\n                          fHAuQXJnMTU4R2xufDk0Ni80MTIyfDQ3My8xMzU5fDE1OC80NTJ8fCxUfG1pc3NlbnNl\n                          X3ZhcmlhbnR8TU9ERVJBVEV8UEFIfEVOU0cwMDAwMDE3MTc1OXx0cmFuc2NyaXB0fEVO\n                          U1QwMDAwMDMwNzAwMHxwcm90ZWluX2NvZGluZ3w2LzE0fGMuNDU4Rz5BfHAuQXJnMTUz\n                          R2xufDcyOS8yNDY5fDQ1OC8xMzQ0fDE1My80NDd8fCxUfGludHJvbl92YXJpYW50fE1P\n                          RElGSUVSfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNjcmlwdHxFTlNUMDAwMDA1NTE5\n                          ODh8cHJvY2Vzc2VkX3RyYW5zY3JpcHR8NC80fG4uNTMwKzEwODMwRz5BfHx8fHx8LFR8\n                          bm9uX2NvZGluZ190cmFuc2NyaXB0X2V4b25fdmFyaWFudHxNT0RJRklFUnxQQUh8RU5T\n                          RzAwMDAwMTcxNzU5fHRyYW5zY3JpcHR8RU5TVDAwMDAwNTQ5MTExfHJldGFpbmVkX2lu\n                          dHJvbnw1LzZ8bi41NjlHPkF8fHx8fHw7Q0xOU0lHPVBhdGhvZ2VuaWMJR1Q6QUQ6RFA6\n                          R1E6UEwJMC8xOjEzLDg6MjE6OTk6Mjk3LDAsNTIyCg==",
+              "contentType": "text/plain"
+            }
+          }
+        ],
+        "issued": "2018-01-01T15:30:10+01:00",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "7224",
+                  "system": "http://www.ncbi.nlm.nih.gov/clinvar",
+                  "display": "NM_000492.3(CFTR):c.2988+1G>A"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "rs75096551",
+                  "system": "https://www.ncbi.nlm.nih.gov/snp",
+                  "display": "chr7:117246808 (GRCh37.p13)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariantName",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "48004-6",
+                  "system": "http://loinc.org",
+                  "display": "NM_000492.3(CFTR):c.2988+1G>A"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsGene",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "1884",
+                  "system": "http://www.genenames.org",
+                  "display": "CFTR"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsAllelicState",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6706-1",
+                  "system": "http://loinc.org",
+                  "display": "Heterozygous"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsInterpretation",
+            "valueReference": {
+              "reference": "urn:uuid:81642d4c-ad85-441b-b39e-c27788e59e03"
+            }
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+        },
+        "note":
+        [
+          {
+            "text": "Cystic Fibrosis DNA result: Positive for one pathogenic mutation: 3120+1G>A\n      \t\t\t\t\t\t\t\t\tInterpretation: This individual is heterozygous for the 3120+1G>A (c.2988+1G>A)\n      \t\t\t\t\t\t\t\t\tmutation in the CFTR gene. This result does not rule out the possibility\n      \t\t\t\t\t\t\t\t\tthat this individual is affected with cystic fibrosis.  Clinical follow\n      \t\t\t\t\t\t\t\t\tup is recommended. Method: DNA isolated from dried blood spot specimen\n      \t\t\t\t\t\t\t\t\tundergoes CFTR mutation detection assay using Luminex xTAG Cystic Fibrosis\n      \t\t\t\t\t\t\t\t\tv2 (CF60) v.02. ACTION: SWEAT CHLORIDE TESTING AND GENETIC COUNSELING RECOMMENDED."
+          }
+      ],
+        "basedOn": [
+          {
+            "reference": "urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"
+          }
+        ],
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "code": "A",
+                "display": "Abnormal",
+                "system": "http://hl7.org/fhir/v2/0078"
+              }
+            ]
+          }
+        ],
+        "contained": [
+          {
+            "resourceType": "Organization",
+            "address": [
+              {
+                "line": [
+                  "4431 South 2700 West"
+                ],
+                "city": "Taylorsville",
+                "postalCode": "84129-8600",
+                "use": "work",
+                "country": "USA"
+              }
+            ],
+            "id": "2",
+            "name": "Unified State Laboratories: Public Health Newborn Screening Program",
+            "telecom": [
+              {
+                "system": "phone",
+                "use": "work",
+                "value": "8015848256"
+              },
+              {
+                "system": "fax",
+                "use": "work",
+                "value": "8015360966"
+              }
+            ]
+          }
+        ],
+        "status": "final",
+        "performer": [
+          {
+            "reference": "#2"
+          }
+        ]
+      },
+      "request": {
+        "url": "Observation",
+        "method": "POST"
+      },
+      "fullUrl": "urn:uuid:65affd39-9def-446b-bb26-0e8ebbbc01da"
+    },
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "54078-1",
+              "system": "http://loinc.org",
+              "display": "Cystic fibrosis newborn screening panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+        },
+        "resourceType": "Observation",
+        "basedOn": [
+          {
+            "reference": "urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"
+          }
+        ],
+        "specimen": {
+          "reference": "urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"
+        },
+        "status": "final",
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "code": "LA6668-3",
+                "display": "Pathogenic",
+                "system": "http://loinc.org"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "url": "Observation",
+        "method": "POST"
+      },
+      "fullUrl": "urn:uuid:81642d4c-ad85-441b-b39e-c27788e59e03"
+    },
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "53261-4",
+              "system": "http://loinc.org",
+              "display": "Amino acid newborn screen panel"
+            }
+          ]
+        },
+        "resourceType": "Observation",
+        "specimen": {
+          "reference": "urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "laboratory",
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "46738-1",
+                  "system": "http://loinc.org",
+                  "display": "Genetic.Disorders newborn screen interpretation"
+                }
+              ]
+            },
+            "valueAttachment": {
+              "data": "IyNmaWxlZm9ybWF0PVZDRnY0LjIKIyNyZWZlcmVuY2U9ZmlsZTovLy9nYXRrL215X2Rh\n                          dGEvdWNzYy5oZzE5LmZhc3RhCiMjU25wRWZmVmVyc2lvbj0iNC4zdCAoYnVpbGQgMjAx\n                          Ny0xMS0yNCAxMDoxOCksIGJ5IFBhYmxvIENpbmdvbGFuaSIKIyNTbnBFZmZDbWQ9IlNu\n                          cEVmZiAgR1JDaDM3Ljc1IGZpbHRlcmVkX3NucHMudmNmICIKIyNJTkZPPTxJRD1BTk4s\n                          TnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IkZ1bmN0aW9uYWwgYW5ub3Rh\n                          dGlvbnM6ICdBbGxlbGUgfCBBbm5vdGF0aW9uIHwgQW5ub3RhdGlvbl9JbXBhY3QgfCBH\n                          ZW5lX05hbWUgfCBHZW5lX0lEIHwgRmVhdHVyZV9UeXBlIHwgRmVhdHVyZV9JRCB8IFRy\n                          YW5zY3JpcHRfQmlvVHlwZSB8IFJhbmsgfCBIR1ZTLmMgfCBIR1ZTLnAgfCBjRE5BLnBv\n                          cyAvIGNETkEubGVuZ3RoIHwgQ0RTLnBvcyAvIENEUy5sZW5ndGggfCBBQS5wb3MgLyBB\n                          QS5sZW5ndGggfCBEaXN0YW5jZSB8IEVSUk9SUyAvIFdBUk5JTkdTIC8gSU5GTycgIj4K\n                          IyNJTkZPPTxJRD1MT0YsTnVtYmVyPS4sVHlwZT1TdHJpbmcsRGVzY3JpcHRpb249IlBy\n                          ZWRpY3RlZCBsb3NzIG9mIGZ1bmN0aW9uIGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFudC4g\n                          Rm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2NyaXB0\n                          c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgojI0lO\n                          Rk89PElEPU5NRCxOdW1iZXI9LixUeXBlPVN0cmluZyxEZXNjcmlwdGlvbj0iUHJlZGlj\n                          dGVkIG5vbnNlbnNlIG1lZGlhdGVkIGRlY2F5IGVmZmVjdHMgZm9yIHRoaXMgdmFyaWFu\n                          dC4gRm9ybWF0OiAnR2VuZV9OYW1lIHwgR2VuZV9JRCB8IE51bWJlcl9vZl90cmFuc2Ny\n                          aXB0c19pbl9nZW5lIHwgUGVyY2VudF9vZl90cmFuc2NyaXB0c19hZmZlY3RlZCciPgoj\n                          Q0hST00JUE9TCUlECVJFRglBTFQJUVVBTAlGSUxURVIJSU5GTwlGT1JNQVQJU2FtcGxl\n                          MQpjaHI3CTExNzI0NjgwOAkuCUcJQQkyNTkuNzMJUEFTUwlBQz0xO0FGPTAuNTAwO0FO\n                          PTI7QmFzZVFSYW5rU3VtPTEuMzczO0NsaXBwaW5nUmFua1N1bT0wLjAwMDtEUD0yNjtF\n                          eGNlc3NIZXQ9My4wMTAzO0ZTPTAuMDAwO01MRUFDPTE7TUxFQUY9MC41MDA7TVE9NjAu\n                          MDA7TVFSYW5rU3VtPTAuMDAwO1FEPTEyLjM3O1JlYWRQb3NSYW5rU3VtPS0wLjkxMztT\n                          T1I9MC41Njk7QU5OPUF8c3BsaWNlX2Rvbm9yX3ZhcmlhbnR8TU9ERVJBVEV8Q0ZUUnxF\n                          TlNHMDAwMDAwMDE2MjZ8dHJhbnNjcmlwdHxFTlNUMDAwMDAwMDMwODR8fHxjLjI5ODgr\n                          MUc+QXx8fHx8fDtDTE5TSUc9UGF0aG9nZW5pYwlHVDpBRDpEUDpHUTpQTAkwLzE6MTMs\n                          ODoyMTo5OToyOTcsMCw1MjIKY2hyMTIJMTAzMjM0MjcxCS4JRwlBCTMwMC4wCVBBU1MJ\n                          QUM9MTtBRj0wLjUwMDtBTj0yO0Jhc2VRUmFua1N1bT0xLjM3MztDbGlwcGluZ1JhbmtT\n                          dW09MC4wMDA7RFA9MjY7RXhjZXNzSGV0PTMuMDEwMztGUz0wLjAwMDtNTEVBQz0xO01M\n                          RUFGPTAuNTAwO01RPTYwLjAwO01RUmFua1N1bT0wLjAwMDtRRD0xMi4zNztSZWFkUG9z\n                          UmFua1N1bT0tMC45MTM7U09SPTAuNTY5O0FOTj1BfHN0cnVjdHVyYWxfaW50ZXJhY3Rp\n                          b25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MURN\n                          VzpBXzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8\n                          Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJ\n                          R0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxRE1XOkFfMzExLUFfNDA4\n                          OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8\n                          fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAw\n                          MDAwMTcxNzU5fGludGVyYWN0aW9ufDFKOFU6QV8zMDgtQV80MDg6RU5TVDAwMDAwNTUz\n                          MTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVy\n                          YWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50\n                          ZXJhY3Rpb258MUo4VTpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9j\n                          b2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlv\n                          bl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxS1cw\n                          OkFfMzExLUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xj\n                          LjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElH\n                          SHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDFMUk06QV8zMDgtQV80MDg6\n                          RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8\n                          fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAw\n                          MDAxNzE3NTl8aW50ZXJhY3Rpb258MUxSTTpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMx\n                          MDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJh\n                          bF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRl\n                          cmFjdGlvbnwxTU1LOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2Nv\n                          ZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9u\n                          X3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDFNTUs6\n                          QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMu\n                          MTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdI\n                          fFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MU1NVDpBXzMxMS1BXzQwODpF\n                          TlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8\n                          LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAw\n                          MDE3MTc1OXxpbnRlcmFjdGlvbnwxUEFIOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEw\n                          Nnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFs\n                          X2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVy\n                          YWN0aW9ufDFQQUg6QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29k\n                          aW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25f\n                          dmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MVREVzpB\n                          XzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4x\n                          MjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8\n                          UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwxVERXOkFfMzExLUFfNDA4OkVO\n                          U1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHws\n                          QXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAw\n                          MTcxNzU5fGludGVyYWN0aW9ufDFURzI6QV8zMDgtQV80MDg6RU5TVDAwMDAwNTUzMTA2\n                          fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxf\n                          aW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJh\n                          Y3Rpb258MVRHMjpBXzMxMS1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rp\n                          bmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92\n                          YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnwzUEFIOkFf\n                          MzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEy\n                          MjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQ\n                          QUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDNQQUg6QV8zMTEtQV80MDg6RU5T\n                          VDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxB\n                          fHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAx\n                          NzE3NTl8aW50ZXJhY3Rpb258NEFOUDpBXzMwOC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8\n                          cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8c3RydWN0dXJhbF9p\n                          bnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFj\n                          dGlvbnw0QU5QOkFfMzExLUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGlu\n                          Z3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2ludGVyYWN0aW9uX3Zh\n                          cmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0aW9ufDRQQUg6QV8z\n                          MDgtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5nfDEyLzEzfGMuMTIy\n                          MkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBB\n                          SHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NFBBSDpBXzMxMS1BXzQwODpFTlNU\n                          MDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5UfHx8fHx8LEF8\n                          c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFIfEVOU0cwMDAwMDE3\n                          MTc1OXxpbnRlcmFjdGlvbnw1UEFIOkFfMzA4LUFfNDA4OkVOU1QwMDAwMDU1MzEwNnxw\n                          cm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxzdHJ1Y3R1cmFsX2lu\n                          dGVyYWN0aW9uX3ZhcmlhbnR8SElHSHxQQUh8RU5TRzAwMDAwMTcxNzU5fGludGVyYWN0\n                          aW9ufDVQQUg6QV8zMTEtQV80MDg6RU5TVDAwMDAwNTUzMTA2fHByb3RlaW5fY29kaW5n\n                          fDEyLzEzfGMuMTIyMkM+VHx8fHx8fCxBfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFy\n                          aWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NlBBSDpBXzMw\n                          OC1BXzQwODpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIy\n                          Qz5UfHx8fHx8LEF8c3RydWN0dXJhbF9pbnRlcmFjdGlvbl92YXJpYW50fEhJR0h8UEFI\n                          fEVOU0cwMDAwMDE3MTc1OXxpbnRlcmFjdGlvbnw2UEFIOkFfMzExLUFfNDA4OkVOU1Qw\n                          MDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3wxMi8xM3xjLjEyMjJDPlR8fHx8fHwsQXxt\n                          aXNzZW5zZV92YXJpYW50fE1PREVSQVRFfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNj\n                          cmlwdHxFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8MTIvMTN8Yy4xMjIyQz5U\n                          fHAuQXJnNDA4VHJwfDE2OTUvNDEyMnwxMjIyLzEzNTl8NDA4LzQ1Mnx8LEF8bWlzc2Vu\n                          c2VfdmFyaWFudHxNT0RFUkFURXxQQUh8RU5TRzAwMDAwMTcxNzU5fHRyYW5zY3JpcHR8\n                          RU5TVDAwMDAwMzA3MDAwfHByb3RlaW5fY29kaW5nfDEzLzE0fGMuMTIwN0M+VHxwLkFy\n                          ZzQwM1RycHwxNDc4LzI0Njl8MTIwNy8xMzQ0fDQwMy80NDd8fCxBfGRvd25zdHJlYW1f\n                          Z2VuZV92YXJpYW50fE1PRElGSUVSfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNjcmlw\n                          dHxFTlNUMDAwMDA1NDkyNDd8cmV0YWluZWRfaW50cm9ufHxuLiozMTUzQz5UfHx8fHwz\n                          MTUzfCxBfGRvd25zdHJlYW1fZ2VuZV92YXJpYW50fE1PRElGSUVSfFBBSHxFTlNHMDAw\n                          MDAxNzE3NTl8dHJhbnNjcmlwdHxFTlNUMDAwMDA1NTExMTR8cmV0YWluZWRfaW50cm9u\n                          fHxuLiozMjIxQz5UfHx8fHwzMjIxfDtDTE5TSUc9UGF0aG9nZW5pYwlHVDpBRDpEUDpH\n                          UTpQTAkwLzE6MTMsODoyMTo5OToyOTcsMCw1MjIKY2hyMTIJMTAzMjYwNDEwCS4JQwlU\n                          CTMwMC4wCVBBU1MJQUM9MTtBRj0wLjUwMDtBTj0yO0Jhc2VRUmFua1N1bT0xLjM3MztD\n                          bGlwcGluZ1JhbmtTdW09MC4wMDA7RFA9MjY7RXhjZXNzSGV0PTMuMDEwMztGUz0wLjAw\n                          MDtNTEVBQz0xO01MRUFGPTAuNTAwO01RPTYwLjAwO01RUmFua1N1bT0wLjAwMDtRRD0x\n                          Mi4zNztSZWFkUG9zUmFua1N1bT0tMC45MTM7U09SPTAuNTY5O0FOTj1UfHN0cnVjdHVy\n                          YWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50\n                          ZXJhY3Rpb258MURNVzpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9j\n                          b2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25f\n                          dmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MUo4VDpB\n                          XzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3\n                          M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBB\n                          SHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MUo4VTpBXzE1OC1BXzI4MDpFTlNU\n                          MDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0\n                          cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3\n                          NTl8aW50ZXJhY3Rpb258MUtXMDpBXzE1OC1BXzI0NjpFTlNUMDAwMDA1NTMxMDZ8cHJv\n                          dGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJh\n                          Y3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258\n                          MUxSTTpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8x\n                          M3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxI\n                          SUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258MVBBSDpBXzE1OC1BXzI4\n                          MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8\n                          fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAw\n                          MDAxNzE3NTl8aW50ZXJhY3Rpb258MVREVzpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMx\n                          MDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxf\n                          aW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJh\n                          Y3Rpb258MVRHMjpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rp\n                          bmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFy\n                          aWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258M1BBSDpBXzE1\n                          OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+\n                          QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxF\n                          TlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NEFOUDpBXzE1OC1BXzI4MDpFTlNUMDAw\n                          MDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVj\n                          dHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8\n                          aW50ZXJhY3Rpb258NFBBSDpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVp\n                          bl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rp\n                          b25fdmFyaWFudHxISUdIfFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NVBB\n                          SDpBXzE1OC1BXzI4MDpFTlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xj\n                          LjQ3M0c+QXx8fHx8fCxUfHN0cnVjdHVyYWxfaW50ZXJhY3Rpb25fdmFyaWFudHxISUdI\n                          fFBBSHxFTlNHMDAwMDAxNzE3NTl8aW50ZXJhY3Rpb258NlBBSDpBXzE1OC1BXzI4MDpF\n                          TlNUMDAwMDA1NTMxMDZ8cHJvdGVpbl9jb2Rpbmd8NS8xM3xjLjQ3M0c+QXx8fHx8fCxU\n                          fG1pc3NlbnNlX3ZhcmlhbnR8TU9ERVJBVEV8UEFIfEVOU0cwMDAwMDE3MTc1OXx0cmFu\n                          c2NyaXB0fEVOU1QwMDAwMDU1MzEwNnxwcm90ZWluX2NvZGluZ3w1LzEzfGMuNDczRz5B\n                          fHAuQXJnMTU4R2xufDk0Ni80MTIyfDQ3My8xMzU5fDE1OC80NTJ8fCxUfG1pc3NlbnNl\n                          X3ZhcmlhbnR8TU9ERVJBVEV8UEFIfEVOU0cwMDAwMDE3MTc1OXx0cmFuc2NyaXB0fEVO\n                          U1QwMDAwMDMwNzAwMHxwcm90ZWluX2NvZGluZ3w2LzE0fGMuNDU4Rz5BfHAuQXJnMTUz\n                          R2xufDcyOS8yNDY5fDQ1OC8xMzQ0fDE1My80NDd8fCxUfGludHJvbl92YXJpYW50fE1P\n                          RElGSUVSfFBBSHxFTlNHMDAwMDAxNzE3NTl8dHJhbnNjcmlwdHxFTlNUMDAwMDA1NTE5\n                          ODh8cHJvY2Vzc2VkX3RyYW5zY3JpcHR8NC80fG4uNTMwKzEwODMwRz5BfHx8fHx8LFR8\n                          bm9uX2NvZGluZ190cmFuc2NyaXB0X2V4b25fdmFyaWFudHxNT0RJRklFUnxQQUh8RU5T\n                          RzAwMDAwMTcxNzU5fHRyYW5zY3JpcHR8RU5TVDAwMDAwNTQ5MTExfHJldGFpbmVkX2lu\n                          dHJvbnw1LzZ8bi41NjlHPkF8fHx8fHw7Q0xOU0lHPVBhdGhvZ2VuaWMJR1Q6QUQ6RFA6\n                          R1E6UEwJMC8xOjEzLDg6MjE6OTk6Mjk3LDAsNTIyCg==",
+              "contentType": "text/plain"
+            }
+          }
+        ],
+        "issued": "2018-01-01T15:30:10+01:00",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "577",
+                  "system": "http://www.ncbi.nlm.nih.gov/clinvar",
+                  "display": "NM_000277.2(PAH):c.1222C>T (p.Arg408Trp)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "rs5030858",
+                  "system": "https://www.ncbi.nlm.nih.gov/snp",
+                  "display": "chr12:103234271 (GRCh37.p13)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariantName",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "48004-6",
+                  "system": "http://loinc.org",
+                  "display": "NM_000277.2(PAH):c.1222C>T"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsGene",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "8582",
+                  "system": "http://www.genenames.org",
+                  "display": "PAH"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsAllelicState",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6706-1",
+                  "system": "http://loinc.org",
+                  "display": "Heterozygous"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsInterpretation",
+            "valueReference": {
+              "reference": "urn:uuid:4ee459dc-e4af-48bb-a1fd-32b4eb8d8ce0"
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "587",
+                  "system": "http://www.ncbi.nlm.nih.gov/clinvar",
+                  "display": "NM_000277.2(PAH):c.473G>A (p.Arg158Gln)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "rs5030843",
+                  "system": "https://www.ncbi.nlm.nih.gov/snp",
+                  "display": "chr12:103260410 (GRCh37.p13)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariantName",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "48004-6",
+                  "system": "http://loinc.org",
+                  "display": "NM_000277.2(PAH):c.473G>A"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsGene",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "8582",
+                  "system": "http://www.genenames.org",
+                  "display": "PAH"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsAllelicState",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "LA6706-1",
+                  "system": "http://loinc.org",
+                  "display": "Heterozygous"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsInterpretation",
+            "valueReference": {
+              "reference": "urn:uuid:233ed153-1661-465d-afce-1f7888da10ae"
+            }
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+        },
+        "note":
+        [
+          {
+            "text": "Phenylketonuria (PKU) DNA Result: Positive for two pathogenic mutations: c.1222C>T/c.473G>A\n                          Interpretation: This individual has two mutations, c.1222C>T and c.473G>A, in the PAH gene.\n                          This result is consistent with the clinical diagnosis of Phenylketonuria.\n                          Method: DNA isolated from dried blood spot specimen undergoes targeted gene sequencing\n                          analysis. ACTION: REFERRAL TO METABOLIC SPECIALIST FOR DIAGNOSTIC TESTING."
+          }
+        ],
+        "basedOn": [
+          {
+            "reference": "urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"
+          }
+        ],
+        "interpretation": [
+        {
+          "coding": [
+            {
+              "code": "A",
+              "system": "http://hl7.org/fhir/v2/0078",
+              "display": "Abnormal"
+            }
+          ]
+        }
+      ],
+        "contained": [
+          {
+            "resourceType": "Organization",
+            "address": [
+              {
+                "line": [
+                  "4431 South 2700 West"
+                ],
+                "city": "Taylorsville",
+                "postalCode": "84129-8600",
+                "use": "work",
+                "country": "USA"
+              }
+            ],
+            "id": "2",
+            "name": "Unified State Laboratories: Public Health Newborn Screening Program",
+            "telecom": [
+              {
+                "system": "phone",
+                "use": "work",
+                "value": "8015848256"
+              },
+              {
+                "system": "fax",
+                "use": "work",
+                "value": "8015360966"
+              }
+            ]
+          }
+        ],
+        "status": "final",
+        "performer": [
+          {
+            "reference": "#2"
+          }
+        ]
+      },
+      "request": {
+        "url": "Observation",
+        "method": "POST"
+      },
+      "fullUrl": "urn:uuid:02b41d94-3544-49c7-907f-e344c041637e"
+    },
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "53261-4",
+              "system": "http://loinc.org",
+              "display": "Amino acid newborn screen panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+        },
+        "resourceType": "Observation",
+        "basedOn": [
+          {
+            "reference": "urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"
+          }
+        ],
+        "specimen": {
+          "reference": "urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"
+        },
+        "status": "final",
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "code": "LA6668-3",
+                "system": "http://loinc.org",
+                "display": "Pathogenic"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "url": "Observation",
+        "method": "POST"
+      },
+      "fullUrl": "urn:uuid:4ee459dc-e4af-48bb-a1fd-32b4eb8d8ce0"
+    },
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "53261-4",
+              "system": "http://loinc.org",
+              "display": "Amino acid newborn screen panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:dfcabb51-f74b-47e7-b257-85c807d80935"
+        },
+        "resourceType": "Observation",
+        "basedOn": [
+          {
+            "reference": "urn:uuid:8e1e6853-92a1-4561-b647-d6684c99bd7a"
+          }
+        ],
+        "specimen": {
+          "reference": "urn:uuid:4bd5dbad-018e-4e48-ba57-623c0a741410"
+        },
+        "status": "final",
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "code": "LA6668-3",
+                "system": "http://loinc.org",
+                "display": "Pathogenic"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "url": "Observation",
+        "method": "POST"
+      },
+      "fullUrl": "urn:uuid:233ed153-1661-465d-afce-1f7888da10ae"
+    }
+  ]
+}
