@@ -11,6 +11,7 @@ async function initialize()
     let url = open_url + r.reference
     let response = await fetch(url)
     let obs = await response.json();
+    console.log(obs.interpretation[0].coding[0].display)
     parseObservation(JSON.stringify(obs, null, 3))
   }
   )
